@@ -57,21 +57,6 @@ FIN
 
 `FIN` obligatorio por cada personaje.
 
----
+## Diagrama de clases
 
-## Clases principales
-
-```
-Objeto (abstracta)
-├── Arma        → implements IEquipable
-├── Armadura    → implements IEquipable
-└── Material
-
-Personaje
-├── Inventario (composición)
-└── IEquipable[4] (equipo)
-
-Tienda (stock infinito, clona al comprar)
-Menu (interacción usuario)
-Config (constantes)
-```
+![Diagrama UML](class_uml.png)
