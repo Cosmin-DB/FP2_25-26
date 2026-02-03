@@ -1,0 +1,185 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+top to bottom direction
+
+' === ENUMS ===
+enum TipoArmadura {
+  CABEZA
+  CUERPO
+  PIES
+}
+
+enum SlotEquipo {
+  ARMA
+  CABEZA
+  CUERPO
+  PIES
+}
+
+' === INTERFACE ===
+interface IEquipable <<Interface>> {
+  + getBonoAtaque() : int
+  + getBonoDefensa() : int
+  + getSlot() : SlotEquipo
+}
+
+' === JERARQUIA OBJETO ===
+abstract class Objeto {
+  - nombre : String
+  - precio : int
+  + Objeto(nombre:String, precio:int)
+  + getNombre() : String
+  + getPrecio() : int
+  + copia() : Objeto
+}
+
+class Arma {
+  - ataque : int
+  + Arma(nombre:String, precio:int, ataque:int)
+  + getAtaque() : int
+  + getBonoAtaque() : int
+  + getBonoDefensa() : int
+  + getSlot() : SlotEquipo
+  + copia() : Objeto
+}
+
+class Armadura {
+  - tipo : TipoArmadura
+  - defensa : int
+  + Armadura(nombre:String, precio:int, tipo:TipoArmadura, defensa:int)
+  + getTipo() : TipoArmadura
+  + getDefensa() : int
+  + getBonoAtaque() : int
+  + getBonoDefensa() : int
+  + getSlot() : SlotEquipo
+  + copia() : Objeto
+}
+
+class Material {
+  - calidad : int
+  + Material(nombre:String, precio:int, calidad:int)
+  + getCalidad() : int
+  + copia() : Objeto
+}
+
+Objeto <|-- Arma
+Objeto <|-- Armadura
+Objeto <|-- Material
+
+IEquipable <|.. Arma
+IEquipable <|.. Armadura
+
+Armadura ..> TipoArmadura
+IEquipable ..> SlotEquipo
+
+' === INVENTARIO ===
+class Inventario {
+  - items : Objeto[]
+  + Inventario(capacidad:int)
+  + getCapacidad() : int
+  + getOcupados() : int
+  + hayHueco() : boolean
+  + add(o:Objeto) : void
+  + get(indice:int) : Objeto
+  + remove(indice:int) : Objeto
+  + listar() : String
+}
+
+
+note right of Inventario::get
+  throws IndiceInvalidoException
+end note
+
+note right of Inventario::add
+  throws InventarioLlenoException
+end note
+
+note right of Inventario::remove
+  throws IndiceInvalidoException
+end note
+
+' === PERSONAJE ===
+class Personaje {
+  - nombre : String
+  - dinero : int
+  - ataqueTotal : int
+  - defensaTotal : int
+  - inventario : Inventario
+  - equipo : IEquipable[4]
+  + Personaje(nombre:String, dinero:int, capacidadInventario:int)
+  + getNombre() : String
+  + getDinero() : int
+  + setDinero(n:int) : void
+  + getAtaqueTotal() : int
+  + getDefensaTotal() : int
+  + getInventario() : Inventario
+  + getEquipo() : IEquipable[]
+  + equiparDirecto(slot:SlotEquipo, eq:IEquipable) : void
+  + equiparDesdeInventario(indiceInv:int) : void
+  + desequipar(slot:SlotEquipo) : void
+  + desequiparTodo() : void
+  + mostrarResumen() : String
+  + mostrarEquipo() : String
+  + mostrarInventario() : String
+  - slotToIndex(slot:SlotEquipo) : int
+  - recalcularStats() : void
+}
+
+note left of Personaje::equiparDesdeInventario
+  throws IndiceInvalidoException
+  throws NoEquipableException
+  throws InventarioLlenoException
+end note
+
+note left of Personaje::desequipar
+  throws InventarioLlenoException
+end note
+
+note left of Personaje::desequiparTodo
+  throws InventarioLlenoException
+end note
+
+Personaje "1" *-- "1" Inventario
+Personaje "1" o-- "0..4" IEquipable : equipo
+Personaje ..> SlotEquipo
+
+' === TIENDA ===
+class Tienda {
+  - nombre : String
+  - catalogo : Objeto[]
+  - porcentajeReventa : int
+  + Tienda(nombre:String, catalogo:Objeto[], porcentajeReventa:int)
+  + listarCatalogo() : String
+  + comprar(p:Personaje, indiceCatalogo:int) : void
+  + vender(p:Personaje, indiceInventario:int) : void
+}
+
+note right of Tienda::comprar
+  throws IndiceInvalidoException
+  throws DineroInsuficienteException
+  throws InventarioLlenoException
+end note
+
+note right of Tienda::vender
+  throws IndiceInvalidoException
+end note
+
+Tienda "1" o-- "0..*" Objeto : catalogo
+
+' === MENU ===
+class Menu {
+  - sc : Scanner
+  - personajes : Personaje[]
+  - tienda : Tienda
+  + Menu(personajes:Personaje[], tienda:Tienda)
+  + run() : void
+  - menuPersonaje(p:Personaje) : void
+  - menuTienda(p:Personaje) : void
+  - leerInt(msg:String) : int
+}
+
+Menu ..> Personaje
+Menu ..> Tienda
+
+@enduml
