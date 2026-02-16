@@ -1,0 +1,35 @@
+RESUMEN DE PEDIDOS
+==================
+
+Pedido 1001 
+Fecha: 16/02/2026 
+Cliente: María García López 
+Email: maria.garcia@email.com 
+Dirección: Calle Mayor 15, Toledo 
+Libros:
+  - Código: L001, Título: El Quijote, Autor: Miguel de Cervantes, Precio: 15,50€ 
+  - Código: L002, Título: Cien años de soledad, Autor: Gabriel García Márquez, Precio: 18,90€ 
+  - Código: L003, Título: 1984, Autor: George Orwell, Precio: 12,95€ 
+Total del pedido: 47,35€ 
+
+Pedido 1002 
+Fecha: 16/02/2026 
+Cliente: Juan Martínez Rodríguez 
+Email: juan.martinez@email.com 
+Dirección: Avenida de España 42, Ciudad Real 
+Libros:
+  - Código: L004, Título: El principito, Autor: Antoine de Saint-Exupéry, Precio: 9,95€ 
+  - Código: L001, Título: El Quijote, Autor: Miguel de Cervantes, Precio: 15,50€ 
+Total del pedido: 25,45€ 
+
+Pedido 1003 
+Fecha: 16/02/2026 
+Cliente: Ana Sánchez Pérez 
+Email: ana.sanchez@email.com 
+Dirección: Plaza del Ayuntamiento 8, Albacete 
+Libros:
+  - Código: L005, Título: La sombra del viento, Autor: Carlos Ruiz Zafón, Precio: 16,50€ 
+  - Código: L003, Título: 1984, Autor: George Orwell, Precio: 12,95€ 
+  - Código: L004, Título: El principito, Autor: Antoine de Saint-Exupéry, Precio: 9,95€ 
+Total del pedido: 39,40€ 
+
