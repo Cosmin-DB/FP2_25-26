@@ -1,0 +1,13 @@
+El objetivo de esta práctica es aplicar los conceptos básicos de la programación orientada a objetos mediante el diseño, la implementación y el análisis de un videojuego RPG. Con este ejercicio, reforzaréis la creación y uso de clases, el manejo de arrays de tamaño fijo y la implementación de la lógica de control de flujo en los métodos. La principal interacción será a través de un menú donde podremos ver la información del sistema y realizar las acciones requeridas.
+
+Imaginad que estáis empezando a desarrollar el núcleo interno de un videojuego RPG. En esta primera etapa vamos a disponer de un personaje que tendrá un nombre y podrá almacenar diferentes objetos en su inventario. En esta primera prueba de concepto del videojuego se implementarán los objetos Metal y Arma, que comparten algunas propiedades como: nombre, precio y peso. En el caso del metal, se caracteriza por su dureza, pureza y composición: cobre, acero, carbono, etc. (normalmente expresado por su símbolo químico). Cada arma se caracteriza por tener diferente ataque, longitud, antigüedad y, dependiendo de múltiples factores, en un futuro este arma se podrá degradar, afectando su integridad. Cada personaje podrá tener equipada, en nuestra primera versión del videojuego, un solo arma, pero podrá disponer de múltiples armas y metales en su inventario.
+
+Desde el menú tendremos que poder ver la información básica del personaje, explorar su inventario, equipar un arma del inventario o desequipar su arma y meterla en el inventario para que, si en un futuro hay que diseñar zonas libres de conflicto, se tenga la posibilidad de que el personaje no tenga un arma equipada.
+
+Para facilitar futuras pruebas y ampliaciones se proporcionará un archivo: personaje.txt con un formato específico donde en la primera línea vendrán los datos del personaje si empieza por PERSONAJE, en la segunda vendrán los datos del arma utilizada si empieza por ARMA, y los objetos del inventario si las subsiguientes líneas empiezan por INV. Un ejemplo:
+
+PERSONAJE;Alba;8
+ARMA;EspadaCorta;50;3;12;95.5;3;88
+INV;ARMA;HachaGrande;80;6;18;120.0;12;74
+INV;METAL;LingoteHierro;25;4;7;75;Fe
+INV;METAL;LingoteCobre;20;3;4;80;Cu

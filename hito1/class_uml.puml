@@ -1,0 +1,55 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+top to bottom direction
+
+abstract class Objeto {
+  - nombre : String
+  - precio : double
+  - peso : int
+  + Objeto(nombre:String, precio:double, peso:int)
+}
+
+class Arma {
+  - ataque : int
+  - longitud : double
+  - antiguedad : int
+  - integridad : int
+  + Arma(nombre:String, precio:double, peso:int, ataque:int, longitud:double, antiguedad:int, integridad:int)
+}
+
+class Metal {
+  - dureza : int
+  - pureza : int
+  - composicion : String
+  + Metal(nombre:String, precio:double, peso:int, dureza:int, pureza:int, composicion:String)
+}
+
+class Personaje {
+  - nombre : String
+  - inventario : Objeto[]
+  - armaEquipada : Arma
+  + Personaje(nombre:String, capacidadInventario:int)
+  + agregarAlInventario(obj:Objeto) : boolean
+  + listarInventario() : String
+  + setArma(indiceInv:int) : boolean
+  + setArma(arma:Arma) : boolean
+  + desequiparArma() : boolean
+  + toString() : String
+}
+
+class Menu {
+  - sc : Scanner
+  - personaje : Personaje
+  + Menu(personaje:Personaje)
+  + run() : void
+}
+
+Objeto <|-- Arma
+Objeto <|-- Metal
+
+Personaje "1" o-- "0..*" Objeto : inventario
+Personaje "1" o-- "0..1" Arma : equipada
+Menu "1" --> "1" Personaje : personaje
+
+@enduml
