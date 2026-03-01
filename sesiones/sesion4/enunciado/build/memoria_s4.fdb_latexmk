@@ -1,7 +1,10 @@
 # Fdb version 4
-["pdflatex"] 1772366389.37892 "memoria_s4.tex" "memoria_s4.pdf" "memoria_s4" 1772366392.56115 0
-  "build/memoria_s4.aux" 1772366392 993 74ee9abf91b1fdcbc51980017609afc1 "pdflatex"
-  "build/memoria_s4.out" 1772366392 891 2eb33dce661c0df82d7647a77497ef32 "pdflatex"
+["pdflatex"] 1772377144.39548 "memoria_s4.tex" "memoria_s4.pdf" "memoria_s4" 1772377147.65429 0
+  "../../../logos/Logo_DTSI.jpg" 1772363015 11698 d85eb33f5673fce7f45854fd2dde6766 ""
+  "../../../logos/Logo_FFCCSSTTI.png" 1772363019 93889 9798be147692d1538cf5ca2310a17f52 ""
+  "../../../logos/Logo_UCLM_2025.pdf" 1772363006 90969 17317d732cee3d5ed89a88b9c0379552 ""
+  "build/memoria_s4.aux" 1772377147 993 74ee9abf91b1fdcbc51980017609afc1 "pdflatex"
+  "build/memoria_s4.out" 1772377147 891 2eb33dce661c0df82d7647a77497ef32 "pdflatex"
   "d:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1765747897 2375 baa924870cfb487815765f9094cf3728 ""
   "d:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc" 1765747897 2840 216e6e45ad352e2456e1149f28885bee ""
   "d:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc" 1765747897 3031 6c4d3515bf7115d8518af1c9ab97ca44 ""
@@ -112,10 +115,7 @@
   "d:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1765753964 5587484 838956946e142a6c16840c0a1e858f0a ""
   "d:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1765754704 3635706 2d9ce2f0eef1cd9f21c06d8859426138 ""
   "d:/texlive/2025/texmf.cnf" 1765753909 713 e69b156964470283e0530f5060668171 ""
-  "logos/Logo_DTSI.jpg" 1772363015 11698 d85eb33f5673fce7f45854fd2dde6766 ""
-  "logos/Logo_FFCCSSTTI.png" 1772363019 93889 9798be147692d1538cf5ca2310a17f52 ""
-  "logos/Logo_UCLM_2025.pdf" 1772363006 90969 17317d732cee3d5ed89a88b9c0379552 ""
-  "memoria_s4.tex" 1772365815 7817 cd274b84c41427b35dcb46dfd950cc63 ""
+  "memoria_s4.tex" 1772377106 7890 b8bec54edf78b6ab3432de7e9250acd1 ""
   (generated)
   "build/memoria_s4.aux"
   "build/memoria_s4.log"

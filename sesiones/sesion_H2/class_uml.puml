@@ -1,0 +1,103 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+top to bottom direction
+
+interface IEquipable {
+  + getBonoAtaque() : int
+  + getBonoDefensa() : int
+  + getSlot() : SlotEquipo
+}
+
+abstract class Objeto {
+  - nombre : String
+  - precio : double
+  - peso : int
+  + Objeto(nombre:String, precio:double, peso:int)
+}
+
+class Arma {
+  - ataque : int
+  - longitud : double
+  - antiguedad : int
+  - integridad : int
+  + Arma(nombre:String, precio:double, peso:int, ataque:int, longitud:double, antiguedad:int, integridad:int)
+  + getBonoAtaque() : int
+  + getBonoDefensa() : int
+  + getSlot() : SlotEquipo
+}
+
+class Armadura {
+  - tipo : TipoArmadura
+  - defensa : int
+  + Armadura(nombre:String, precio:double, peso:int, tipo:TipoArmadura, defensa:int)
+  + getBonoAtaque() : int
+  + getBonoDefensa() : int
+  + getSlot() : SlotEquipo
+}
+
+class Metal {
+  - dureza : int
+  - pureza : int
+  - composicion : String
+  + Metal(nombre:String, precio:double, peso:int, dureza:int, pureza:int, composicion:String)
+}
+
+class Personaje {
+  - nombre : String
+  - dinero : double
+  - ataqueTotal : int
+  - defensaTotal : int
+  - inventario : Inventario
+  - equipo : IEquipable[4]
+  + Personaje(nombre:String, dinero:double)
+  + comprar(obj:Objeto) : boolean
+  + listarInventario() : String
+  + equiparDesdeInventario(indiceInv:int) : boolean
+  + desequipar(slot:SlotEquipo) : boolean
+  + toString() : String
+}
+
+class Inventario {
+  - items : Objeto[]
+  + Inventario(capacidad:int)
+  + agregar(obj:Objeto) : boolean
+  + sacar(indice:int) : Objeto
+  + toString() : String
+}
+
+class Tienda {
+  - inventario : Inventario
+  + Tienda()
+  + venderA(personaje:Personaje, indice:int) : boolean
+  + toString() : String
+}
+
+class Menu {
+  - sc : Scanner
+  - personajes : Personaje[]
+  - tienda : Tienda
+  + Menu(personajes:Personaje[], tienda:Tienda)
+  + run() : void
+  - menuPrincipal() : void
+  - menuPersonaje(p:Personaje) : void
+  - menuTienda(p:Personaje) : void
+}
+
+Objeto <|-- Metal
+Objeto <|-- Arma
+Objeto <|-- Armadura
+
+IEquipable <|.. Arma
+IEquipable <|.. Armadura
+
+Inventario "1" o-- "0..*" Objeto
+Personaje "1" o-- "1" Inventario
+Tienda "1" o-- "1" Inventario
+Personaje "1" o-- "0..4" IEquipable
+Menu "1" --> "1..*" Personaje
+Menu "1" --> "1" Tienda
+Tienda ..> Personaje
+Personaje -[hidden]right-> Tienda
+
+@enduml

@@ -23,6 +23,20 @@ Thumbs.db
 # Logs
 *.log
 
+# LaTeX auxiliary files
+*.aux
+*.fdb_latexmk
+*.fls
+*.out
+*.toc
+*.synctex.gz
+*.lof
+*.lot
+*.bbl
+*.blg
+*.nav
+*.snm
+
 # Backup files
 *~
 *.bak
