@@ -2,8 +2,8 @@ public class Armadura extends Objeto implements IEquipable {
     private TipoArmadura tipo;
     private int defensa;
 
-    public Armadura(String nombre, int precio, TipoArmadura tipo, int defensa) {
-        super(nombre, precio);
+    public Armadura(String nombre, int precio, int peso, TipoArmadura tipo, int defensa) {
+        super(nombre, precio, peso);
         this.tipo = tipo;
         this.defensa = defensa;
     }
@@ -39,11 +39,12 @@ public class Armadura extends Objeto implements IEquipable {
 
     @Override
     public Objeto copia() {
-        return new Armadura(getNombre(), getPrecio(), tipo, defensa);
+        return new Armadura(getNombre(), getPrecio(), getPeso(), tipo, defensa);
     }
 
     @Override
     public String toString() {
-        return "ARMADURA(" + tipo + "): " + getNombre() + " | precio=" + getPrecio() + " | DEF=+" + defensa;
+        return "ARMADURA(" + tipo + "): " + getNombre() + " | precio=" + getPrecio() + " | peso=" + getPeso()
+                + " | DEF=+" + defensa;
     }
 }

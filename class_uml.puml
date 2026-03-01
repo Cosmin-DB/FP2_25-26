@@ -3,20 +3,6 @@ skinparam classAttributeIconSize 0
 hide circle
 top to bottom direction
 
-' === ENUMS ===
-enum TipoArmadura {
-  CABEZA
-  CUERPO
-  PIES
-}
-
-enum SlotEquipo {
-  ARMA
-  CABEZA
-  CUERPO
-  PIES
-}
-
 ' === INTERFACE ===
 interface IEquipable <<Interface>> {
   + getBonoAtaque() : int
@@ -28,15 +14,17 @@ interface IEquipable <<Interface>> {
 abstract class Objeto {
   - nombre : String
   - precio : int
-  + Objeto(nombre:String, precio:int)
+  - peso : int
+  + Objeto(nombre:String, precio:int, peso:int)
   + getNombre() : String
   + getPrecio() : int
+  + getPeso() : int
   + copia() : Objeto
 }
 
 class Arma {
   - ataque : int
-  + Arma(nombre:String, precio:int, ataque:int)
+  + Arma(nombre:String, precio:int, peso:int, ataque:int)
   + getAtaque() : int
   + getBonoAtaque() : int
   + getBonoDefensa() : int
@@ -47,7 +35,7 @@ class Arma {
 class Armadura {
   - tipo : TipoArmadura
   - defensa : int
-  + Armadura(nombre:String, precio:int, tipo:TipoArmadura, defensa:int)
+  + Armadura(nombre:String, precio:int, peso:int, tipo:TipoArmadura, defensa:int)
   + getTipo() : TipoArmadura
   + getDefensa() : int
   + getBonoAtaque() : int
@@ -56,22 +44,23 @@ class Armadura {
   + copia() : Objeto
 }
 
-class Material {
-  - calidad : int
-  + Material(nombre:String, precio:int, calidad:int)
-  + getCalidad() : int
+class Metal {
+  - dureza : int
+  - pureza : int
+  - composicion : String
+  + Metal(nombre:String, precio:int, peso:int, dureza:int, pureza:int, composicion:String)
+  + getDureza() : int
+  + getPureza() : int
+  + getComposicion() : String
   + copia() : Objeto
 }
 
 Objeto <|-- Arma
 Objeto <|-- Armadura
-Objeto <|-- Material
+Objeto <|-- Metal
 
 IEquipable <|.. Arma
 IEquipable <|.. Armadura
-
-Armadura ..> TipoArmadura
-IEquipable ..> SlotEquipo
 
 ' === INVENTARIO ===
 class Inventario {
@@ -98,6 +87,8 @@ end note
 note right of Inventario::remove
   throws IndiceInvalidoException
 end note
+
+Inventario "1" o-- "0..*" Objeto : items
 
 ' === PERSONAJE ===
 class Personaje {
@@ -126,13 +117,13 @@ class Personaje {
   - recalcularStats() : void
 }
 
-note left of Personaje::equiparDesdeInventario
+note left of Personaje::desequipar
   throws IndiceInvalidoException
   throws NoEquipableException
   throws InventarioLlenoException
 end note
 
-note left of Personaje::desequipar
+note left of Personaje::desequiparTodo
   throws InventarioLlenoException
 end note
 
@@ -142,7 +133,6 @@ end note
 
 Personaje "1" *-- "1" Inventario
 Personaje "1" o-- "0..4" IEquipable : equipo
-Personaje ..> SlotEquipo
 
 ' === TIENDA ===
 class Tienda {
@@ -166,6 +156,9 @@ note right of Tienda::vender
 end note
 
 Tienda "1" o-- "0..*" Objeto : catalogo
+Tienda ..> Personaje
+Tienda -[hidden]right-> Inventario
+Personaje -[hidden]right-> Inventario
 
 ' === MENU ===
 class Menu {

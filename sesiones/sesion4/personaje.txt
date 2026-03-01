@@ -1,0 +1,5 @@
+PERSONAJE;Alba;8
+ARMA;EspadaCorta;50;3;12;95.5;3;88
+INV;ARMA;HachaGrande;80;6;18;120.0;12;74
+INV;METAL;LingoteHierro;25;4;7;75;Fe
+INV;METAL;LingoteCobre;20;3;4;80;Cu

@@ -28,3 +28,6 @@ Thumbs.db
 *.bak
 *.tmp
 
+# Local agent instructions
+AGENTS.md
+

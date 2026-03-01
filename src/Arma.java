@@ -1,8 +1,8 @@
 public class Arma extends Objeto implements IEquipable {
     private int ataque;
 
-    public Arma(String nombre, int precio, int ataque) {
-        super(nombre, precio);
+    public Arma(String nombre, int precio, int peso, int ataque) {
+        super(nombre, precio, peso);
         this.ataque = ataque;
     }
 
@@ -27,11 +27,11 @@ public class Arma extends Objeto implements IEquipable {
 
     @Override
     public Objeto copia() {
-        return new Arma(getNombre(), getPrecio(), ataque);
+        return new Arma(getNombre(), getPrecio(), getPeso(), ataque);
     }
 
     @Override
     public String toString() {
-        return "ARMA: " + getNombre() + " | precio=" + getPrecio() + " | ATK=+" + ataque;
+        return "ARMA: " + getNombre() + " | precio=" + getPrecio() + " | peso=" + getPeso() + " | ATK=+" + ataque;
     }
 }

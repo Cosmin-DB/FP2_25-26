@@ -1,8 +1,8 @@
-ARMA;EspadaCorta;50;12
-ARMA;HachaGrande;80;18
-ARMADURA;CascoCuero;35;CABEZA;4
-ARMADURA;PetoHierro;80;CUERPO;10
-ARMADURA;BotasTela;20;PIES;2
-MATERIAL;PiedraAfilado;15;1
-MATERIAL;HierroEnBruto;25;2
-MATERIAL;GemaRara;100;5
+ARMA;EspadaCorta;50;3;12
+ARMA;HachaGrande;80;6;18
+ARMADURA;CascoCuero;35;2;CABEZA;4
+ARMADURA;PetoHierro;80;8;CUERPO;10
+ARMADURA;BotasTela;20;1;PIES;2
+METAL;LingoteHierro;25;4;7;75;Fe
+METAL;LingoteCobre;20;3;4;80;Cu
+METAL;PepitaOro;100;1;2;95;Au

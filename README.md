@@ -6,7 +6,7 @@
 |----------|-----------------|
 | **Clase abstracta** | `Objeto` - define estructura común |
 | **Método abstracto** | `Objeto.copia()`, `Objeto.toString()` |
-| **Herencia** | `Arma`, `Armadura`, `Material` extienden `Objeto` |
+| **Herencia** | `Arma`, `Armadura`, `Metal` extienden `Objeto` |
 | **Interface** | `IEquipable` - contrato para equipamiento |
 | **Polimorfismo** | `Tienda.comprar()` llama `obj.copia()` sin saber el tipo |
 | **instanceof** | `Personaje.equiparDesdeInventario()` verifica tipo |
@@ -38,9 +38,9 @@
 ### `tienda.txt`
 
 ```
-ARMA;Nombre;Precio;Ataque
-ARMADURA;Nombre;Precio;TipoArmadura;Defensa
-MATERIAL;Nombre;Precio;Calidad
+ARMA;Nombre;Precio;Peso;Ataque
+ARMADURA;Nombre;Precio;Peso;TipoArmadura;Defensa
+METAL;Nombre;Precio;Peso;Dureza;Pureza;Composicion
 ```
 
 ### `personajes.txt`
@@ -48,10 +48,10 @@ MATERIAL;Nombre;Precio;Calidad
 ```
 PERSONAJE;Nombre;Dinero;CapacidadInventario
 EQUIPO;VACIO;SlotEquipo
-EQUIPO;ARMA;Nombre;Precio;Ataque
-EQUIPO;ARMADURA;Nombre;Precio;TipoArmadura;Defensa
-INV;ARMA;Nombre;Precio;Ataque
-INV;MATERIAL;Nombre;Precio;Calidad
+EQUIPO;ARMA;Nombre;Precio;Peso;Ataque
+EQUIPO;ARMADURA;Nombre;Precio;Peso;TipoArmadura;Defensa
+INV;ARMA;Nombre;Precio;Peso;Ataque
+INV;METAL;Nombre;Precio;Peso;Dureza;Pureza;Composicion
 FIN
 ```
 

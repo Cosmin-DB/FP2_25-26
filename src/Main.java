@@ -56,21 +56,26 @@ public class Main {
             if (tipo.equals("ARMA")) {
                 String nombre = p[start + 1].trim();
                 int precio = Integer.parseInt(p[start + 2].trim());
-                int ataque = Integer.parseInt(p[start + 3].trim());
-                resultado = new Arma(nombre, precio, ataque);
+                int peso = Integer.parseInt(p[start + 3].trim());
+                int ataque = Integer.parseInt(p[start + 4].trim());
+                resultado = new Arma(nombre, precio, peso, ataque);
 
             } else if (tipo.equals("ARMADURA")) {
                 String nombre = p[start + 1].trim();
                 int precio = Integer.parseInt(p[start + 2].trim());
-                TipoArmadura tipoArm = TipoArmadura.valueOf(p[start + 3].trim().toUpperCase());
-                int defensa = Integer.parseInt(p[start + 4].trim());
-                resultado = new Armadura(nombre, precio, tipoArm, defensa);
+                int peso = Integer.parseInt(p[start + 3].trim());
+                TipoArmadura tipoArm = TipoArmadura.valueOf(p[start + 4].trim().toUpperCase());
+                int defensa = Integer.parseInt(p[start + 5].trim());
+                resultado = new Armadura(nombre, precio, peso, tipoArm, defensa);
 
-            } else if (tipo.equals("MATERIAL")) {
+            } else if (tipo.equals("METAL")) {
                 String nombre = p[start + 1].trim();
                 int precio = Integer.parseInt(p[start + 2].trim());
-                int calidad = Integer.parseInt(p[start + 3].trim());
-                resultado = new Material(nombre, precio, calidad);
+                int peso = Integer.parseInt(p[start + 3].trim());
+                int dureza = Integer.parseInt(p[start + 4].trim());
+                int pureza = Integer.parseInt(p[start + 5].trim());
+                String composicion = p[start + 6].trim();
+                resultado = new Metal(nombre, precio, peso, dureza, pureza, composicion);
 
             } else {
                 throw new FormatoFicheroException("Tipo desconocido: " + tipo);
@@ -123,16 +128,18 @@ public class Main {
                 } else if (subtipo.equals("ARMA")) {
                     String nombre = p[2].trim();
                     int precio = Integer.parseInt(p[3].trim());
-                    int ataque = Integer.parseInt(p[4].trim());
-                    Arma arma = new Arma(nombre, precio, ataque);
+                    int peso = Integer.parseInt(p[4].trim());
+                    int ataque = Integer.parseInt(p[5].trim());
+                    Arma arma = new Arma(nombre, precio, peso, ataque);
                     actual.equiparDirecto(SlotEquipo.ARMA, arma);
 
                 } else if (subtipo.equals("ARMADURA")) {
                     String nombre = p[2].trim();
                     int precio = Integer.parseInt(p[3].trim());
-                    TipoArmadura tipoArm = TipoArmadura.valueOf(p[4].trim().toUpperCase());
-                    int defensa = Integer.parseInt(p[5].trim());
-                    Armadura armadura = new Armadura(nombre, precio, tipoArm, defensa);
+                    int peso = Integer.parseInt(p[4].trim());
+                    TipoArmadura tipoArm = TipoArmadura.valueOf(p[5].trim().toUpperCase());
+                    int defensa = Integer.parseInt(p[6].trim());
+                    Armadura armadura = new Armadura(nombre, precio, peso, tipoArm, defensa);
                     actual.equiparDirecto(tipoArmaduraToSlot(tipoArm), armadura);
                 }
 

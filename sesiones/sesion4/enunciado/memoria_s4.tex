@@ -1,0 +1,163 @@
+﻿%=====================================
+% Guion de Prácticas - Sesión 4
+% Grado en Ingeniería Informática
+% Universidad de Castilla-La Mancha
+% Curso 2025/26
+%=====================================
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancybox}
+
+\onehalfspacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{FPII 25/26}
+\fancyhead[C]{Sesión 4: Proyecto práctico (Hito 1)}
+\fancyhead[R]{UCLM}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14.5pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+    urlcolor=blue
+}
+
+\definecolor{importante}{RGB}{220,20,60}
+\definecolor{nota}{RGB}{0,100,200}
+\definecolor{advertencia}{RGB}{255,140,0}
+
+\newcommand{\importante}[1]{%
+    \begin{center}
+    \fcolorbox{importante}{white}{\begin{minipage}{0.95\linewidth}\textbf{\textcolor{importante}{IMPORTANTE:}} #1\end{minipage}}
+    \end{center}
+}
+
+\newcommand{\nota}[1]{%
+    \begin{center}
+    \fcolorbox{nota}{white}{\begin{minipage}{0.95\linewidth}\textbf{\textcolor{nota}{NOTA:}} #1\end{minipage}}
+    \end{center}
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+
+    \includegraphics[height=2cm]{logos/Logo_UCLM_2025.pdf}
+    \hspace{1cm}
+    \includegraphics[height=2cm]{logos/Logo_FFCCSSTTI.png}
+    \hspace{1cm}
+    \includegraphics[height=2cm]{logos/Logo_DTSI.jpg}
+
+    \vspace{0.5cm}
+
+    \large \textbf{Grado en Ingeniería Informática} \\
+    \Large \textbf{Fundamentos de Programación II 25/26} \\
+    \vspace{8cm}
+
+    {\Huge \textbf{Sesión 4:}} \\
+    \vspace{0.5cm}
+    {\Huge \textbf{Proyecto práctico: Hito 1}}
+\end{titlepage}
+
+\setcounter{page}{1}
+
+\vspace*{0.01cm}
+\section*{Resumen}
+
+El objetivo de esta práctica es afianzar los conocimientos adquiridos sobre creación y manejo de clases y objetos, aplicando un flujo completo de análisis, diseño e implementación orientado a objetos. El trabajo se plantea por parejas y se centra en la construcción del núcleo de un videojuego RPG (Role-Playing Game).
+
+\section{Objetivos}
+
+\begin{itemize}
+    \item Aplicar los fundamentos de programación orientada a objetos en un caso práctico realista.
+    \item Diseñar e implementar un sistema modular con clases, relaciones y responsabilidades bien definidas.
+    \item Practicar el uso de arrays de tamaño fijo y lógica de control de flujo en métodos.
+    \item Consolidar el proceso de trabajo por fases: análisis, diseño e implementación.
+\end{itemize}
+
+\section{Normas de trabajo}
+
+El ejercicio se realizará por parejas y se entregará en la tarea habilitada en Campus Virtual. Se deberán seguir estas normas:
+
+\begin{itemize}
+    \item \textbf{Entrega}
+    \begin{itemize}
+        \item Todos los archivos deberán comprimirse en un único archivo ZIP.
+        \item El nombre del ZIP debe seguir el formato \texttt{LX\_XX.zip} según el grupo de Campus Virtual.
+        \item El ZIP deberá incluir:
+        \begin{itemize}
+            \item Imagen del diagrama de clases y relaciones UML (\texttt{.png} o \texttt{.jpg}).
+            \item Únicamente la carpeta \texttt{src} con los archivos \texttt{.java}.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Restricciones de implementación}
+    \begin{itemize}
+        \item No utilizar múltiples \texttt{return} en una misma función.
+        \item No utilizar \texttt{continue}.
+        \item No utilizar \texttt{break}, salvo en sentencias \texttt{switch}.
+    \end{itemize}
+    \item Queda totalmente \textbf{prohibido el uso de Inteligencia Artificial} para realizar estas prácticas. Cualquier indicio de su utilización será penalizado.
+\end{itemize}
+
+\clearpage
+\section{Fases del desarrollo orientado a objetos}
+
+Se pide seguir las fases del desarrollo de software orientado a objetos:
+
+\begin{itemize}
+    \item \textbf{Análisis:} En esta fase se identifican los requisitos del sistema. Intentamos encontrar los objetos y relaciones adecuados para el problema propuesto. Investigamos el problema centrándonos en los conceptos del dominio del problema, sin preocuparnos por la implementación. Es importante entender el problema y definir claramente los requisitos antes de pasar a la siguiente fase.
+    \item \textbf{Diseño:} En esta fase se define la arquitectura del sistema. Partiendo de los objetos y relaciones identificados en el análisis, se diseña la estructura del sistema. Se definen las clases, sus atributos y métodos (aún sin pensar en la implementación, solo en aquella funcionalidad que cada clase debe tener), así como las relaciones entre ellas (herencia, composición, etc.). Es importante diseñar un sistema modular y flexible que permita cambios futuros sin afectar a toda la aplicación. En esta fase es fundamental el uso de diagramas UML (especialmente el diagrama de clases).
+    \item \textbf{Implementación:} Únicamente cuando tenemos claro el diseño, pasamos a la implementación. En esta fase se escribe el código fuente de la aplicación siguiendo el diseño establecido. Es importante seguir buenas prácticas de programación y mantener el código limpio y organizado.
+\end{itemize}
+
+\section{Desarrollo de la práctica}
+
+En esta práctica aplicaréis los conceptos básicos de la programación orientada a objetos mediante el diseño, la implementación y el análisis de un videojuego RPG. Con este ejercicio, reforzaréis la creación y uso de clases, el manejo de arrays de tamaño fijo y la implementación de la lógica de control de flujo en los métodos. La principal interacción será a través de un menú donde podremos ver la información del sistema y realizar las acciones requeridas.
+
+Imaginad que estáis empezando a desarrollar el núcleo interno de un videojuego RPG. En esta primera etapa vamos a disponer de un personaje que tendrá un nombre y podrá almacenar diferentes objetos en su inventario. En esta primera prueba de concepto del videojuego se implementarán los objetos metal y arma, que comparten algunas propiedades como: nombre, precio y peso. En el caso del metal, se caracteriza por su dureza, pureza y composición: cobre, acero, carbono, etc. (normalmente expresado por su símbolo químico). Cada arma se caracteriza por tener diferente ataque, longitud, antigüedad y, en un futuro este arma se podrá degradar, afectando su integridad. Cada personaje podrá tener equipada, un solo arma, pero podrá disponer de múltiples armas y metales en su inventario.
+
+Desde el menú tendremos que poder ver la información básica del personaje, explorar su inventario, equipar un arma del inventario o desequipar su arma y meterla en el inventario para que, si en un futuro hay que diseñar zonas libres de conflicto, se tenga la posibilidad de que el personaje no tenga un arma equipada.
+
+\subsection{Formato del fichero \texttt{personaje.txt}}
+
+Para facilitar futuras pruebas y ampliaciones se proporcionará un archivo de entrada con formato fijo:
+
+\begin{itemize}
+    \item Primera línea: datos del personaje (si empieza por \texttt{PERSONAJE}).
+    \item Segunda línea: datos del arma equipada (si empieza por \texttt{ARMA}).
+    \item Líneas siguientes: objetos del inventario (si empiezan por \texttt{INV}).
+\end{itemize}
+
+Ejemplo:
+
+\begin{verbatim}
+PERSONAJE;Alba;8
+ARMA;EspadaCorta;50;3;12;95.5;3;88
+INV;ARMA;HachaGrande;80;6;18;120.0;12;74
+INV;METAL;LingoteHierro;25;4;7;75;Fe
+INV;METAL;LingoteCobre;20;3;4;80;Cu
+\end{verbatim}
+
+\end{document}

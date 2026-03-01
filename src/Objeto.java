@@ -1,10 +1,12 @@
 public abstract class Objeto {
     private String nombre;
     private int precio;
+    private int peso;
 
-    public Objeto(String nombre, int precio) {
+    public Objeto(String nombre, int precio, int peso) {
         this.nombre = nombre;
         this.precio = precio;
+        this.peso = peso;
     }
 
     public String getNombre() {
@@ -13,6 +15,10 @@ public abstract class Objeto {
 
     public int getPrecio() {
         return precio;
+    }
+
+    public int getPeso() {
+        return peso;
     }
 
     public abstract Objeto copia();
