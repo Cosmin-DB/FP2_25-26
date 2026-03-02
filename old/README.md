@@ -1,4 +1,4 @@
-# RPG de Consola (FP2) — Inventario, Equipo y Tienda
+﻿# RPG de Consola (FP2) — Inventario, Equipo y Tienda
 
 ## Conceptos POO cubiertos
 
