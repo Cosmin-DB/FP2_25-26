@@ -2,13 +2,26 @@ import java.io.File;
 import java.util.Scanner;
 
 public class Main {
-    private static final String RUTA_PERSONAJES = "personaje.txt";
+    private static final String RUTA_PERSONAJE_LOCAL = "personaje.txt";
+    private static final String RUTA_PERSONAJE_REPO = "sesiones/sesion4/personaje.txt";
 
     public static void main(String[] args) throws Exception {
-        Personaje personaje = cargarPersonaje(RUTA_PERSONAJES);
+        File ficheroPersonaje = resolverFicheroPersonaje();
+        Personaje personaje = cargarPersonaje(ficheroPersonaje);
         System.out.println("Personaje cargado.");
         Menu menu = new Menu(personaje);
         menu.run();
+    }
+
+    private static File resolverFicheroPersonaje() throws Exception {
+        File fichero = new File(RUTA_PERSONAJE_LOCAL);
+        if (!fichero.exists()) {
+            fichero = new File(RUTA_PERSONAJE_REPO);
+        }
+        if (!fichero.exists()) {
+            throw new Exception("No se encuentra personaje.txt");
+        }
+        return fichero;
     }
 
     private static Arma parsearArma(String[] p, int start) {
@@ -22,12 +35,12 @@ public class Main {
         return new Arma(nombreArma, precioArma, pesoArma, ataque, longitud, antiguedad, integridad);
     }
 
-    private static Objeto parsearObjeto(String[] p, int start) {
+    private static Objeto parsearObjeto(String[] p, int start) throws Exception {
         Objeto obj;
         String tipo = p[start];
         if (tipo.equals("ARMA")) {
             obj = parsearArma(p, start);
-        } else {
+        } else if (tipo.equals("METAL")) {
             String nombreMetal = p[start + 1];
             double precioMetal = Double.parseDouble(p[start + 2]);
             int pesoMetal = Integer.parseInt(p[start + 3]);
@@ -35,12 +48,14 @@ public class Main {
             int pureza = Integer.parseInt(p[start + 5]);
             String composicion = p[start + 6];
             obj = new Metal(nombreMetal, precioMetal, pesoMetal, dureza, pureza, composicion);
+        } else {
+            throw new Exception("Tipo no soportado en inventario: " + tipo);
         }
         return obj;
     }
 
-    private static Personaje cargarPersonaje(String ruta) throws Exception {
-        Scanner sc = new Scanner(new File(ruta));
+    private static Personaje cargarPersonaje(File fichero) throws Exception {
+        Scanner sc = new Scanner(fichero);
 
         String[] pPersonaje = sc.nextLine().split(";");
         String nombre = pPersonaje[1];
