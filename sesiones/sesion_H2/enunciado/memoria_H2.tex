@@ -1,0 +1,201 @@
+﻿%=====================================
+% Guion de Prácticas - Hito 2
+% Grado en Ingeniería Informática
+% Universidad de Castilla-La Mancha
+% Curso 2025/26
+%=====================================
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancybox}
+
+\onehalfspacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{FPII 25/26}
+\fancyhead[C]{Proyecto práctico (Hito 2)}
+\fancyhead[R]{UCLM}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14.5pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+    urlcolor=blue
+}
+
+\definecolor{importante}{RGB}{220,20,60}
+\definecolor{nota}{RGB}{0,100,200}
+\definecolor{advertencia}{RGB}{255,140,0}
+
+\newcommand{\importante}[1]{%
+    \begin{center}
+    \fcolorbox{importante}{white}{\begin{minipage}{0.95\linewidth}\textbf{\textcolor{importante}{IMPORTANTE:}} #1\end{minipage}}
+    \end{center}
+}
+
+\newcommand{\nota}[1]{%
+    \begin{center}
+    \fcolorbox{nota}{white}{\begin{minipage}{0.95\linewidth}\textbf{\textcolor{nota}{NOTA:}} #1\end{minipage}}
+    \end{center}
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+
+    \includegraphics[height=2cm]{../../../logos/Logo_UCLM_2025.pdf}
+    \hspace{1cm}
+    \includegraphics[height=2cm]{../../../logos/Logo_FFCCSSTTI.png}
+    \hspace{1cm}
+    \includegraphics[height=2cm]{../../../logos/Logo_DTSI.jpg}
+
+    \vspace{0.5cm}
+
+    \large \textbf{Grado en Ingeniería Informática} \\
+    \Large \textbf{Fundamentos de Programación II 25/26} \\
+    \vspace{8cm}
+
+    {\Huge \textbf{Hito 2}} \\
+    \vspace{0.5cm}
+    {\Huge \textbf{Proyecto práctico: Hito 2}}
+\end{titlepage}
+
+\setcounter{page}{1}
+
+\vspace*{0.01cm}
+\section*{Resumen}
+
+El objetivo de esta práctica es afianzar los conocimientos adquiridos sobre creación y manejo de clases y objetos, aplicando un flujo completo de análisis, diseño e implementación orientado a objetos. El trabajo se plantea por parejas y se centra en la construcción del núcleo de un videojuego RPG (Role-Playing Game).
+
+\section{Objetivos}
+
+\begin{itemize}
+    \item Aplicar los fundamentos de programación orientada a objetos en un caso práctico realista.
+    \item Diseñar e implementar un sistema modular con clases, relaciones y responsabilidades bien definidas.
+    \item Practicar el uso de arrays de tamaño fijo y lógica de control de flujo en métodos.
+    \item Consolidar el proceso de trabajo por fases: análisis, diseño e implementación.
+\end{itemize}
+
+\section{Normas de trabajo}
+
+El ejercicio se realizará por parejas y se entregará en la tarea habilitada en Campus Virtual. Se deberán seguir estas normas:
+
+\begin{itemize}
+    \item \textbf{Entrega}
+    \begin{itemize}
+        \item Todos los archivos deberán comprimirse en un único archivo ZIP.
+        \item El nombre del ZIP debe seguir el formato \texttt{LX\_XX.zip} según el grupo de Campus Virtual.
+        \item El ZIP deberá incluir:
+        \begin{itemize}
+            \item Imagen del diagrama de clases y relaciones UML (\texttt{.png} o \texttt{.jpg}).
+            \item Únicamente la carpeta \texttt{src} con los archivos \texttt{.java}.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Restricciones de implementación}
+    \begin{itemize}
+        \item No utilizar múltiples \texttt{return} en una misma función.
+        \item No utilizar \texttt{continue}.
+        \item No utilizar \texttt{break}, salvo en sentencias \texttt{switch}.
+        \item No utilizar \texttt{ArrayList}.
+    \end{itemize}
+    \item Queda totalmente \textbf{prohibido el uso de Inteligencia Artificial} para realizar estas prácticas. Cualquier indicio de su utilización será penalizado.
+\end{itemize}
+
+\clearpage
+\section{Fases del desarrollo orientado a objetos}
+
+Se pide seguir las fases del desarrollo de software orientado a objetos:
+
+\begin{itemize}
+    \item \textbf{Análisis:} En esta fase se identifican los requisitos del sistema. Intentamos encontrar los objetos y relaciones adecuados para el problema propuesto. Investigamos el problema centrándonos en los conceptos del dominio del problema, sin preocuparnos por la implementación. Es importante entender el problema y definir claramente los requisitos antes de pasar a la siguiente fase.
+    \item \textbf{Diseño:} En esta fase se define la arquitectura del sistema. Partiendo de los objetos y relaciones identificados en el análisis, se diseña la estructura del sistema. Se definen las clases, sus atributos y métodos (aún sin pensar en la implementación, solo en aquella funcionalidad que cada clase debe tener), así como las relaciones entre ellas (herencia, composición, etc.). Es importante diseñar un sistema modular y flexible que permita cambios futuros sin afectar a toda la aplicación. En esta fase es fundamental el uso de diagramas UML (especialmente el diagrama de clases).
+    \item \textbf{Implementación:} Únicamente cuando tenemos claro el diseño, pasamos a la implementación. En esta fase se escribe el código fuente de la aplicación siguiendo el diseño establecido. Es importante seguir buenas prácticas de programación y mantener el código limpio y organizado.
+\end{itemize}
+
+\section{Desarrollo de la práctica}
+
+En este hito se amplía el núcleo del videojuego para poder trabajar con varios personajes. Los personajes se cargarán desde un fichero de entrada (\texttt{personajes.txt}) y el menú permitirá seleccionar con cuál de ellos queremos jugar. En esta versión, todos los personajes tendrán un inventario de tamaño fijo (5 posiciones), de forma que tendréis que gestionar huecos libres y qué ocurre cuando el inventario está lleno.
+
+Además, se introduce una tienda donde el personaje podrá comprar objetos. En esta fase no es necesario implementar la venta de objetos del personaje a la tienda. La tienda tendrá su propio inventario con la misma lógica que el personaje y con una capacidad máxima de 20 objetos: cuando un personaje compra un objeto, ese objeto pasa a su inventario y desaparece de la tienda.
+El catálogo inicial de la tienda se cargará desde un fichero de entrada (\texttt{tienda.txt}).
+
+También se amplía el sistema de equipamiento. Además del arma, el personaje podrá equipar armaduras de tres tipos: cabeza, cuerpo y pies (se deberá utilizar un \texttt{enum}). Cada pieza de equipo (arma o armadura) podrá aportar un bonus de ataque y/o de defensa. Para modelar esta relación se deberá utilizar una interfaz que represente el contrato del equipamiento, de modo que el personaje pueda tratar de forma uniforme el arma y las armaduras mediante polimorfismo.
+
+En concreto, el personaje deberá almacenar su equipo en un único array de tamaño fijo de 4 posiciones, cuyo tipo sea el de la interfaz. Así, la interfaz deberá permitir obtener el bonus de ataque y defensa que aporta cada pieza de equipo, además de especificar la posición que ocupa en el array.
+
+El menú se organizará por niveles: un menú principal, un menú del personaje y un menú de la tienda. Desde el menú principal se podrá listar a los personajes y entrar en el menú de uno concreto. En el menú del personaje se podrá ver su información, explorar el inventario, equipar un arma o una armadura, desequipar una posición e ir a la tienda. En el menú de la tienda se podrá ver el catálogo y realizar compras.
+
+
+\subsection{Ficheros de entrada}
+
+\textbf{\texttt{personajes.txt}}. El archivo de personajes se organiza en bloques:
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item Inicio de bloque: \path{PERSONAJE;nombre;dinero}
+    \item Líneas de equipo:\\
+    \path{EQUIPO;ARMA;nombre;precio;peso;ataque;longitud;antiguedad;integridad}\\
+    \path{EQUIPO;ARMADURA;nombre;precio;peso;tipo;defensa}\\
+    \path{EQUIPO;VACIO;slot}
+    \item Líneas de inventario:\\
+    \path{INV;ARMA;nombre;precio;peso;ataque;longitud;antiguedad;integridad}\\
+    \path{INV;ARMADURA;nombre;precio;peso;tipo;defensa}\\
+    \path{INV;METAL;nombre;precio;peso;dureza;pureza;composicion}
+    \item Fin de bloque: \path{FIN}
+\end{itemize}
+
+\textbf{Ejemplo:}
+{\small
+\begin{verbatim}
+PERSONAJE;Alba;150
+EQUIPO;ARMA;EspadaCorta;50;3;12;95.5;3;88
+EQUIPO;ARMADURA;CascoHierro;40;2;CABEZA;6
+EQUIPO;ARMADURA;CorazaCuero;60;5;CUERPO;9
+EQUIPO;VACIO;PIES
+INV;ARMA;HachaGrande;80;6;18;120.0;12;74
+INV;METAL;LingoteHierro;25;4;7;75;Fe
+INV;METAL;LingoteCobre;20;3;4;80;Cu
+FIN
+\end{verbatim}
+}
+
+\textbf{\texttt{tienda.txt}}. Cada línea del fichero representa un objeto del catálogo:
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item \path{ARMA;nombre;precio;peso;ataque;longitud;antiguedad;integridad}
+    \item \path{ARMADURA;nombre;precio;peso;tipo;defensa}
+    \item \path{METAL;nombre;precio;peso;dureza;pureza;composicion}
+\end{itemize}
+
+\textbf{Ejemplo:}
+{\small
+\begin{verbatim}
+ARMA;MandobleViejo;90;7;20;140.0;18;81
+ARMA;LanzaCorta;55;4;11;180.0;6;90
+ARMADURA;CascoAcero;70;3;CABEZA;8
+ARMADURA;PetoHierro;110;8;CUERPO;14
+ARMADURA;GrebasCuero;40;2;PIES;4
+METAL;LingotePlata;60;2;5;92;Ag
+METAL;LingoteTitanio;140;3;10;74;Ti
+\end{verbatim}
+}
+
+\end{document}
