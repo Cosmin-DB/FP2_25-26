@@ -48,8 +48,8 @@ class Menu {
 Objeto <|-- Arma
 Objeto <|-- Metal
 
-Personaje "1" o-- "0..*" Objeto : inventario
-Personaje "1" o-- "0..1" Arma : equipada
-Menu "1" --> "1" Personaje : personaje
+Personaje "1" -- "0..*" Objeto
+Personaje "1" -- "0..1" Arma
+Menu "1" -- "1" Personaje
 
 @enduml
