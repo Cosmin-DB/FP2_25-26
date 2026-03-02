@@ -11,8 +11,8 @@ public class Personaje {
 
     public boolean agregarAlInventario(Objeto obj) {
         boolean agregado = false;
-        for (int i = 0; i < inventario.length; i = i + 1) {
-            if (!agregado && inventario[i] == null) {
+        for (int i = 0; i < inventario.length && !agregado; i = i + 1) {
+            if (inventario[i] == null) {
                 inventario[i] = obj;
                 agregado = true;
             }

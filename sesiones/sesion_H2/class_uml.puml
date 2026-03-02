@@ -6,7 +6,7 @@ top to bottom direction
 interface IEquipable {
   + getBonoAtaque() : int
   + getBonoDefensa() : int
-  + getSlot() : SlotEquipo
+  + getSlot() : int
 }
 
 abstract class Objeto {
@@ -24,7 +24,7 @@ class Arma {
   + Arma(nombre:String, precio:double, peso:int, ataque:int, longitud:double, antiguedad:int, integridad:int)
   + getBonoAtaque() : int
   + getBonoDefensa() : int
-  + getSlot() : SlotEquipo
+  + getSlot() : int
 }
 
 class Armadura {
@@ -33,7 +33,7 @@ class Armadura {
   + Armadura(nombre:String, precio:double, peso:int, tipo:TipoArmadura, defensa:int)
   + getBonoAtaque() : int
   + getBonoDefensa() : int
-  + getSlot() : SlotEquipo
+  + getSlot() : int
 }
 
 class Metal {
@@ -46,15 +46,17 @@ class Metal {
 class Personaje {
   - nombre : String
   - dinero : double
-  - ataqueTotal : int
-  - defensaTotal : int
   - inventario : Inventario
   - equipo : IEquipable[4]
   + Personaje(nombre:String, dinero:double)
+  + getAtaqueTotal() : int
+  + getDefensaTotal() : int
   + comprar(obj:Objeto) : boolean
+  + agregarAlInventario(obj:Objeto) : boolean
   + listarInventario() : String
-  + equiparDesdeInventario(indiceInv:int) : boolean
-  + desequipar(slot:SlotEquipo) : boolean
+  + equipar(indiceInv:int) : boolean
+  + equipar(eq:IEquipable) : boolean
+  + desequipar(slot:int) : boolean
   + toString() : String
 }
 
@@ -69,6 +71,7 @@ class Inventario {
 class Tienda {
   - inventario : Inventario
   + Tienda()
+  + agregarAlInventario(obj:Objeto) : boolean
   + venderA(personaje:Personaje, indice:int) : boolean
   + toString() : String
 }
@@ -91,12 +94,12 @@ Objeto <|-- Armadura
 IEquipable <|.. Arma
 IEquipable <|.. Armadura
 
-Inventario "1" o-- "0..*" Objeto
-Personaje "1" o-- "1" Inventario
-Tienda "1" o-- "1" Inventario
+Inventario "1" -- "0..*" Objeto
+Personaje "1" *-- "1" Inventario
+Tienda "1" *-- "1" Inventario
 Personaje "1" o-- "0..4" IEquipable
-Menu "1" --> "1..*" Personaje
-Menu "1" --> "1" Tienda
+Menu "1" -- "1..*" Personaje
+Menu "1" -- "1" Tienda
 Tienda ..> Personaje
 Personaje -[hidden]right-> Tienda
 
