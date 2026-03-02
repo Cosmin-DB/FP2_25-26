@@ -2,26 +2,13 @@ import java.io.File;
 import java.util.Scanner;
 
 public class Main {
-    private static final String RUTA_PERSONAJE_LOCAL = "personaje.txt";
-    private static final String RUTA_PERSONAJE_REPO = "sesiones/sesion4/personaje.txt";
+    private static final String RUTA_PERSONAJE = "personaje.txt";
 
     public static void main(String[] args) throws Exception {
-        File ficheroPersonaje = resolverFicheroPersonaje();
-        Personaje personaje = cargarPersonaje(ficheroPersonaje);
+        Personaje personaje = cargarPersonaje(RUTA_PERSONAJE);
         System.out.println("Personaje cargado.");
         Menu menu = new Menu(personaje);
         menu.run();
-    }
-
-    private static File resolverFicheroPersonaje() throws Exception {
-        File fichero = new File(RUTA_PERSONAJE_LOCAL);
-        if (!fichero.exists()) {
-            fichero = new File(RUTA_PERSONAJE_REPO);
-        }
-        if (!fichero.exists()) {
-            throw new Exception("No se encuentra personaje.txt");
-        }
-        return fichero;
     }
 
     private static Arma parsearArma(String[] p, int start) {
@@ -54,8 +41,8 @@ public class Main {
         return obj;
     }
 
-    private static Personaje cargarPersonaje(File fichero) throws Exception {
-        Scanner sc = new Scanner(fichero);
+    private static Personaje cargarPersonaje(String ruta) throws Exception {
+        Scanner sc = new Scanner(new File(ruta));
 
         String[] pPersonaje = sc.nextLine().split(";");
         String nombre = pPersonaje[1];
