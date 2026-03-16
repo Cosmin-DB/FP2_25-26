@@ -22,6 +22,7 @@
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{fancybox}
+\usepackage{fancyvrb}
 
 \onehalfspacing
 \setlength{\parindent}{0pt}
@@ -135,14 +136,14 @@ Se pide seguir las fases del desarrollo de software orientado a objetos:
 
 \section{Desarrollo de la práctica}
 
-En este hito se amplía el núcleo del videojuego para poder trabajar con varios personajes. Los personajes se cargarán desde un fichero de entrada (\texttt{personajes.txt}) y el menú permitirá seleccionar con cuál de ellos queremos jugar. En esta versión, todos los personajes tendrán un inventario de tamaño fijo (5 posiciones), de forma que tendréis que gestionar huecos libres y qué ocurre cuando el inventario está lleno.
+En este hito se amplía el núcleo del videojuego para poder trabajar con varios personajes. Los personajes se cargarán desde un fichero de entrada (\texttt{personajes.txt}) y el menú permitirá seleccionar con cuál de ellos queremos jugar. En esta versión, todos los personajes tendrán un inventario de tamaño fijo (5 posiciones), por lo que, al igual que en el Hito 1, deberéis tener cuidado con los huecos libres y con qué ocurre cuando el inventario está lleno.
 
 Además, se introduce una tienda donde el personaje podrá comprar objetos. En esta fase no es necesario implementar la venta de objetos del personaje a la tienda. La tienda tendrá su propio inventario con la misma lógica que el personaje y con una capacidad máxima de 20 objetos: cuando un personaje compra un objeto, ese objeto pasa a su inventario y desaparece de la tienda.
 El catálogo inicial de la tienda se cargará desde un fichero de entrada (\texttt{tienda.txt}).
 
-También se amplía el sistema de equipamiento. Además del arma, el personaje podrá equipar armaduras de tres tipos: cabeza, cuerpo y pies (se deberá utilizar un \texttt{enum}). Cada pieza de equipo (arma o armadura) podrá aportar un bonus de ataque y/o de defensa. Para modelar esta relación se deberá utilizar una interfaz que represente el contrato del equipamiento, de modo que el personaje pueda tratar de forma uniforme el arma y las armaduras mediante polimorfismo.
+También se amplía el sistema de equipamiento. Además del arma, el personaje podrá equipar armaduras de tres tipos: cabeza, cuerpo y pies (por ejemplo, casco, coraza y botas; se deberá utilizar un \texttt{enum}). Cada pieza de equipo (arma o armadura) podrá aportar un bonus de ataque y/o de defensa. Para modelar esta relación se deberá utilizar una interfaz que represente el contrato del equipamiento, de modo que el personaje pueda tratar de forma uniforme el arma y las armaduras mediante polimorfismo.
 
-En concreto, el personaje deberá almacenar su equipo en un único array de tamaño fijo de 4 posiciones, cuyo tipo sea el de la interfaz. Así, la interfaz deberá permitir obtener el bonus de ataque y defensa que aporta cada pieza de equipo, además de especificar la posición que ocupa en el array.
+En concreto, el personaje deberá almacenar su equipo en un único array de tamaño fijo de 4 posiciones, cuyo tipo sea el de la interfaz. Así, la interfaz deberá definir por contrato que todo objeto equipable proporcione funciones que devuelvan el bonus de ataque y de defensa que aporta.
 
 El menú se organizará por niveles: un menú principal, un menú del personaje y un menú de la tienda. Desde el menú principal se podrá listar a los personajes y entrar en el menú de uno concreto. En el menú del personaje se podrá ver su información, explorar el inventario, equipar un arma o una armadura, desequipar una posición e ir a la tienda. En el menú de la tienda se podrá ver el catálogo y realizar compras.
 
@@ -163,9 +164,8 @@ El menú se organizará por niveles: un menú principal, un menú del personaje 
     \item Fin de bloque: \path{FIN}
 \end{itemize}
 
-\textbf{Ejemplo:}
-{\small
-\begin{verbatim}
+\textbf{Ejemplo (\texttt{personajes.txt}):}
+\begin{Verbatim}[frame=single, fontsize=\small]
 PERSONAJE;Alba;150
 EQUIPO;ARMA;EspadaCorta;50;3;12;95.5;3;88
 EQUIPO;ARMADURA;CascoHierro;40;2;CABEZA;6
@@ -175,8 +175,15 @@ INV;ARMA;HachaGrande;80;6;18;120.0;12;74
 INV;METAL;LingoteHierro;25;4;7;75;Fe
 INV;METAL;LingoteCobre;20;3;4;80;Cu
 FIN
-\end{verbatim}
-}
+
+PERSONAJE;Bran;95
+EQUIPO;VACIO;ARMA
+EQUIPO;ARMADURA;CascoCuero;18;1;CABEZA;2
+EQUIPO;VACIO;CUERPO
+EQUIPO;ARMADURA;BotasCuero;15;1;PIES;1
+INV;METAL;LingoteBronce;30;3;5;68;Br
+FIN
+\end{Verbatim}
 
 \textbf{\texttt{tienda.txt}}. Cada línea del fichero representa un objeto del catálogo:
 \begin{itemize}[noitemsep, topsep=0pt]
@@ -185,9 +192,8 @@ FIN
     \item \path{METAL;nombre;precio;peso;dureza;pureza;composicion}
 \end{itemize}
 
-\textbf{Ejemplo:}
-{\small
-\begin{verbatim}
+\textbf{Ejemplo (\texttt{tienda.txt}):}
+\begin{Verbatim}[frame=single, fontsize=\small]
 ARMA;MandobleViejo;90;7;20;140.0;18;81
 ARMA;LanzaCorta;55;4;11;180.0;6;90
 ARMADURA;CascoAcero;70;3;CABEZA;8
@@ -195,7 +201,6 @@ ARMADURA;PetoHierro;110;8;CUERPO;14
 ARMADURA;GrebasCuero;40;2;PIES;4
 METAL;LingotePlata;60;2;5;92;Ag
 METAL;LingoteTitanio;140;3;10;74;Ti
-\end{verbatim}
-}
+\end{Verbatim}
 
 \end{document}
