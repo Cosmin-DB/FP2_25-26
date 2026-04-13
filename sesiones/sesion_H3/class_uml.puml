@@ -1,0 +1,161 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+top to bottom direction
+
+interface IEquipable {
+  + getBonoAtaque() : int
+  + getBonoDefensa() : int
+  + getSlot() : int
+}
+
+abstract class Objeto {
+  - nombre : String
+  - precio : double
+  - peso : int
+  + Objeto(nombre:String, precio:double, peso:int)
+  + mostrar() : String
+  + toString() : String
+}
+
+class Arma {
+  - ataque : int
+  - longitud : double
+  - antiguedad : int
+  - integridad : int
+  + Arma(nombre:String, precio:double, peso:int, ataque:int, longitud:double, antiguedad:int, integridad:int)
+  + getBonoAtaque() : int
+  + getBonoDefensa() : int
+  + getSlot() : int
+  + mostrar() : String
+  + toString() : String
+}
+
+class Armadura {
+  - tipo : TipoArmadura
+  - defensa : int
+  + Armadura(nombre:String, precio:double, peso:int, tipo:TipoArmadura, defensa:int)
+  + getBonoAtaque() : int
+  + getBonoDefensa() : int
+  + getSlot() : int
+  + mostrar() : String
+  + toString() : String
+}
+
+class Metal {
+  - dureza : int
+  - pureza : int
+  - composicion : String
+  + Metal(nombre:String, precio:double, peso:int, dureza:int, pureza:int, composicion:String)
+  + mostrar() : String
+  + toString() : String
+}
+
+class Personaje {
+  - nombre : String
+  - dinero : double
+  - inventario : Inventario
+  - equipo : IEquipable[4]
+  + Personaje(nombre:String, dinero:double)
+  + getAtaqueTotal() : int
+  + getDefensaTotal() : int
+  + comprar(obj:Objeto) : void
+  + agregarAlInventario(obj:Objeto) : void
+  + listarInventario() : String
+  + equipar(indiceInv:int) : void
+  + equipar(eq:IEquipable) : void
+  + desequipar(slot:int) : void
+  + guardar() : void
+  + toString() : String
+}
+
+class Inventario {
+  - items : Objeto[]
+  + Inventario(capacidad:int)
+  + agregar(obj:Objeto) : void
+  + ver(indice:int) : Objeto
+  + sacar(indice:int) : Objeto
+  + toString() : String
+}
+
+class Tienda {
+  - inventario : Inventario
+  + Tienda()
+  + agregarAlInventario(obj:Objeto) : void
+  + venderA(personaje:Personaje, indice:int) : void
+  + toString() : String
+}
+
+class Menu {
+  - sc : Scanner
+  - personajes : Personaje[]
+  - tienda : Tienda
+  + Menu(personajes:Personaje[], tienda:Tienda)
+  + run() : void
+  - menuPrincipal() : void
+  - menuPersonaje(p:Personaje) : void
+  - menuTienda(p:Personaje) : void
+}
+
+note right of Inventario::agregar
+  throws InventarioLlenoException
+end note
+
+note right of Inventario::sacar
+  throws PosicionVaciaException
+end note
+
+note left of Personaje::comprar
+  throws DineroInsuficienteException
+  throws InventarioLlenoException
+end note
+
+note left of Personaje::agregarAlInventario
+  throws InventarioLlenoException
+end note
+
+note left of Personaje::"equipar(indiceInv:int)"
+  throws PosicionVaciaException
+  throws ObjetoNoEquipableException
+  throws InventarioLlenoException
+end note
+
+note left of Personaje::"equipar(eq:IEquipable)"
+  throws InventarioLlenoException
+end note
+
+note left of Personaje::desequipar
+  throws InventarioLlenoException
+end note
+
+note left of Personaje::guardar
+  throws IOException
+end note
+
+note right of Tienda::agregarAlInventario
+  throws InventarioLlenoException
+end note
+
+note right of Tienda::venderA
+  throws PosicionVaciaException
+  throws DineroInsuficienteException
+  throws InventarioLlenoException
+end note
+
+Objeto <|-- Metal
+Objeto <|-- Arma
+Objeto <|-- Armadura
+
+IEquipable <|.. Arma
+IEquipable <|.. Armadura
+
+Inventario "1" -- "0..*" Objeto
+Personaje "1" *-- "1" Inventario
+Tienda "1" *-- "1" Inventario
+Personaje "1" o-- "0..4" IEquipable
+Menu "1" -- "1..*" Personaje
+Menu "1" -- "1" Tienda
+Tienda ..> Personaje
+Personaje -[hidden]right-> Tienda
+
+@enduml

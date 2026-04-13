@@ -1,0 +1,156 @@
+﻿%=====================================
+% Guion de Prácticas - Hito 3
+% Grado en Ingeniería Informática
+% Universidad de Castilla-La Mancha
+% Curso 2025/26
+%=====================================
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancybox}
+\usepackage{fancyvrb}
+
+\onehalfspacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{FPII 25/26}
+\fancyhead[C]{Proyecto práctico (Hito 3)}
+\fancyhead[R]{UCLM}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14.5pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+    urlcolor=blue
+}
+
+\definecolor{importante}{RGB}{220,20,60}
+\definecolor{nota}{RGB}{0,100,200}
+\definecolor{advertencia}{RGB}{255,140,0}
+
+\newcommand{\importante}[1]{%
+    \begin{center}
+    \fcolorbox{importante}{white}{\begin{minipage}{0.95\linewidth}\textbf{\textcolor{importante}{IMPORTANTE:}} #1\end{minipage}}
+    \end{center}
+}
+
+\newcommand{\nota}[1]{%
+    \begin{center}
+    \fcolorbox{nota}{white}{\begin{minipage}{0.95\linewidth}\textbf{\textcolor{nota}{NOTA:}} #1\end{minipage}}
+    \end{center}
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+
+    \includegraphics[height=2cm]{../../../logos/Logo_UCLM_2025.pdf}
+    \hspace{1cm}
+    \includegraphics[height=2cm]{../../../logos/Logo_FFCCSSTTI.png}
+    \hspace{1cm}
+    \includegraphics[height=2cm]{../../../logos/Logo_DTSI.jpg}
+
+    \vspace{0.5cm}
+
+    \large \textbf{Grado en Ingeniería Informática} \\
+    \Large \textbf{Fundamentos de Programación II 25/26} \\
+    \vspace{8cm}
+
+    {\Huge \textbf{Hito 3}} \\
+    \vspace{0.5cm}
+    {\Huge \textbf{Proyecto práctico: Hito 3}}
+\end{titlepage}
+
+\setcounter{page}{1}
+
+\vspace*{0.01cm}
+\section*{Resumen}
+
+El objetivo de esta práctica es afianzar los conocimientos adquiridos sobre manejo de excepciones y trabajo básico con ficheros, aplicándolos sobre el sistema orientado a objetos desarrollado en los hitos anteriores. El trabajo se plantea por parejas y se centra en seguir ampliando el núcleo de un videojuego RPG (Role-Playing Game).
+
+\section{Objetivos}
+
+\begin{itemize}
+    \item Afianzar el uso de excepciones propias del sistema para representar situaciones anómalas del dominio.
+    \item Trabajar con excepciones de entrada/salida de Java en operaciones de lectura y escritura de ficheros.
+    \item Adaptar un sistema ya existente manteniendo la coherencia entre análisis, diseño e implementación.
+    \item Consolidar el proceso de trabajo por fases: análisis, diseño e implementación.
+\end{itemize}
+
+\section{Normas de trabajo}
+
+El ejercicio se realizará por parejas y se entregará en la tarea habilitada en Campus Virtual. Se deberán seguir estas normas:
+
+\begin{itemize}
+    \item \textbf{Entrega}
+    \begin{itemize}
+        \item Todos los archivos deberán comprimirse en un único archivo ZIP.
+        \item El nombre del ZIP debe seguir el formato \texttt{LX\_XX.zip} según el grupo de Campus Virtual.
+        \item El ZIP deberá incluir:
+        \begin{itemize}
+            \item Imagen del diagrama de clases y relaciones UML (\texttt{.png} o \texttt{.jpg}).
+            \item Únicamente la carpeta \texttt{src} con los archivos \texttt{.java}.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Restricciones de implementación}
+    \begin{itemize}
+        \item No utilizar múltiples \texttt{return} en una misma función.
+        \item No utilizar \texttt{continue}.
+        \item No utilizar \texttt{break}, salvo en sentencias \texttt{switch}.
+        \item No utilizar \texttt{ArrayList}.
+    \end{itemize}
+    \item Queda totalmente \textbf{prohibido el uso de Inteligencia Artificial} para realizar estas prácticas. Cualquier indicio de su utilización será penalizado.
+\end{itemize}
+
+\clearpage
+\section{Fases del desarrollo orientado a objetos}
+
+Se pide seguir las fases del desarrollo de software orientado a objetos:
+
+\begin{itemize}
+    \item \textbf{Análisis:} En esta fase se identifican los requisitos del sistema. Intentamos encontrar los objetos y relaciones adecuados para el problema propuesto. Investigamos el problema centrándonos en los conceptos del dominio del problema, sin preocuparnos por la implementación. Es importante entender el problema y definir claramente los requisitos antes de pasar a la siguiente fase.
+    \item \textbf{Diseño:} En esta fase se define la arquitectura del sistema. Partiendo de los objetos y relaciones identificados en el análisis, se diseña la estructura del sistema. Se definen las clases, sus atributos y métodos (aún sin pensar en la implementación, solo en aquella funcionalidad que cada clase debe tener), así como las relaciones entre ellas (herencia, composición, etc.). Es importante diseñar un sistema modular y flexible que permita cambios futuros sin afectar a toda la aplicación. En esta fase es fundamental el uso de diagramas UML (especialmente el diagrama de clases).
+    \item \textbf{Implementación:} Únicamente cuando tenemos claro el diseño, pasamos a la implementación. En esta fase se escribe el código fuente de la aplicación siguiendo el diseño establecido. Es importante seguir buenas prácticas de programación y mantener el código limpio y organizado.
+\end{itemize}
+
+\section{Desarrollo de la práctica}
+
+En este hito se parte del sistema desarrollado en el hito anterior y se incorpora una nueva capa de trabajo centrada en el manejo de errores mediante excepciones. La funcionalidad general del videojuego se mantiene, pero ahora determinadas situaciones anómalas deberán representarse y gestionarse de forma explícita. Además, se añadirá una nueva opción que permitirá exportar a un fichero de texto el estado actual del personaje con el que se esté trabajando, siguiendo el mismo formato general ya utilizado en los hitos anteriores.
+
+En esta fase se trabajará con dos tipos de excepciones. Por un lado, se deberán implementar excepciones propias del sistema para representar errores del dominio del problema. Por otro, se trabajará también con las excepciones de entrada/salida de Java asociadas a la lectura y escritura de ficheros.
+
+Las excepciones propias que deberán incorporarse son las siguientes:
+\begin{itemize}
+    \item \texttt{InventarioLlenoException}: se producirá cuando se intente añadir un objeto a un inventario que ya no dispone de huecos libres.
+    \item \texttt{ObjetoNoEquipableException}: se producirá cuando se intente equipar un objeto que no puede formar parte del equipo del personaje.
+    \item \texttt{PosicionVaciaException}: se producirá cuando se intente utilizar una posición del inventario o de la tienda que exista, pero que no contenga ningún objeto.
+    \item \texttt{DineroInsuficienteException}: se producirá cuando un personaje intente comprar un objeto sin disponer de dinero suficiente.
+    \item \texttt{TipoObjetoInvalidoException}: se producirá cuando, durante la lectura de los ficheros del sistema, aparezca un tipo de objeto no reconocido.
+\end{itemize}
+
+La nueva funcionalidad de escritura permitirá guardar en un fichero la información completa del personaje actual, incluyendo sus datos, el equipo que tiene equipado y el contenido de su inventario. Ese fichero deberá seguir el mismo formato general que ya se ha utilizado para representar personajes en los hitos anteriores, de forma que mantenga coherencia con el sistema ya desarrollado.
+
+Se pide actualizar el diagrama UML para reflejar los cambios introducidos en este hito, implementar las nuevas excepciones y adaptar las clases necesarias para integrarlas correctamente en el funcionamiento del programa. También se deberá incorporar la exportación del personaje actual a fichero y comprobar que el sistema sigue funcionando correctamente cuando se producen tanto errores propios del dominio como errores relacionados con la entrada/salida.
+
+\end{document}
