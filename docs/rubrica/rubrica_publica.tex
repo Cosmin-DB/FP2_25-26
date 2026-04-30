@@ -1,0 +1,81 @@
+﻿%=====================================
+% Rubrica - Practica completa
+% Fundamentos de Programacion II
+% Universidad de Castilla-La Mancha
+% Curso 2025/26
+%=====================================
+
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.45cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{xcolor}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\setlist[itemize]{leftmargin=*, itemsep=1pt, topsep=2pt, parsep=0pt}
+\renewcommand{\arraystretch}{1.15}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{FPII 25/26}
+\fancyhead[C]{Practica completa}
+\fancyhead[R]{UCLM}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14pt}
+
+\begin{document}
+\normalsize
+
+\begin{center}
+    \includegraphics[height=2cm]{../../logos/Logo_UCLM_2025.pdf}
+    \hspace{1cm}
+    \includegraphics[height=2cm]{../../logos/Logo_FFCCSSTTI.png}
+    \hspace{1cm}
+    \includegraphics[height=2cm]{../../logos/Logo_DTSI.jpg}
+
+    \vspace{2pt}
+
+    \textbf{Rubrica practica completa}
+\end{center}
+
+\textbf{Criterios de evaluacion}
+
+La practica se valora sobre 10 puntos. La correccion tendra en cuenta el funcionamiento del programa, la coherencia entre UML e implementacion y la defensa realizada.
+
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.2cm}p{1.5cm}X}
+Bloque & Puntos & Criterios principales \\
+\hline
+UML & 3.00 & Relaciones (0.50), clases (0.50) y contenido del diagrama (2.00): atributos, metodos, visibilidades, tipos, parametros, retornos y excepciones propias relevantes. \\
+Main y arranque & 1.00 & Creacion de objetos, carga inicial de datos y arranque correcto del flujo principal de la aplicacion. \\
+Implementacion general & 5.00 & Navegacion por menus (0.60), equipar y desequipar (1.00), comprar en tienda (0.80), guardar personaje (0.50), uso de \texttt{toString} (0.40), herencia de \texttt{Objeto} (0.90), uso de \texttt{enum} (0.20) y encapsulacion (0.60). \\
+Excepciones & 1.00 & Uso adecuado de excepciones propias y de excepciones de entrada/salida de Java, lanzadas y capturadas en lugares coherentes. \\
+\end{tabularx}
+
+\vspace{0.3cm}
+\textbf{Implementacion general}
+
+\begin{itemize}
+    \item Las mecanicas principales deben poder probarse desde el menu: navegar, equipar, desequipar, comprar, guardar y mostrar informacion.
+    \item La solucion debe aplicar de forma razonable los conceptos de POO trabajados: herencia, interfaz, polimorfismo, enumerados y encapsulacion.
+    \item Se valorara que las responsabilidades esten bien repartidas entre las clases y que el codigo sea claro, mantenible y coherente con el diseno.
+\end{itemize}
+
+\textbf{Defensa}
+
+La defensa forma parte de la evaluacion. El alumnado debe poder explicar las decisiones de diseno e implementacion tomadas en su practica.
+
+\end{document}
+
+
+
+
