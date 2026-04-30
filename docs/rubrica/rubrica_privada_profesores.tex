@@ -11,32 +11,21 @@
 \usepackage[spanish]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage[margin=0.95cm]{geometry}
-\usepackage{fancyhdr}
+\usepackage[margin=0.9cm]{geometry}
 \usepackage{graphicx}
 \usepackage{enumitem}
-\usepackage{multicol}
 \usepackage{xcolor}
 
+\pagestyle{empty}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{1pt}
-\setlength{\columnsep}{0.6cm}
-\setlist[itemize]{leftmargin=*, itemsep=0pt, topsep=1pt, parsep=0pt}
+\setlength{\parskip}{3pt}
+\setlist[itemize]{leftmargin=*, itemsep=2pt, topsep=2pt, parsep=0pt}
 
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{FPII 25/26}
-\fancyhead[C]{Practica completa}
-\fancyhead[R]{UCLM}
-\fancyfoot[C]{\thepage}
-\renewcommand{\headrulewidth}{0.4pt}
-\setlength{\headheight}{13pt}
-
-\newcommand{\bloque}[2]{\vspace{2pt}\textbf{#1 - #2}\par}
+\newcommand{\bloque}[2]{\vspace{3pt}\textbf{#1\if\relax\detokenize{#2}\relax\else{} - #2\fi}\par}
 \newcommand{\subbloque}[2]{\textit{#1 - #2}\par}
 
 \begin{document}
-\footnotesize
+\fontsize{10.5}{14.5}\selectfont
 
 \begin{center}
     \includegraphics[height=2cm]{../../logos/Logo_UCLM_2025.pdf}
@@ -47,18 +36,33 @@
 
     \vspace{2pt}
 
-    \textbf{Rubrica practica completa}
+    \textbf{Rúbrica juego RPG}
 \end{center}
-\vspace{-4pt}
+\vspace{-6pt}
 
-\textbf{Criterios de correccion} \hfill \textbf{Total: 10 puntos}
+\bloque{Techos de nota}{}
+\begin{itemize}
+    \item No compila: máximo 3.00.
+    \item Usa estructuras explícitamente prohibidas: máximo 3.00.
+    \item No supera la defensa: máximo 3.00.
+\end{itemize}
 
-\begin{multicols}{2}
+Un techo no asigna directamente esa calificación: si se aplica un máximo de 3 puntos, la práctica pasa a corregirse de 0 a 3.
+
+\bloque{Penalizaciones globales}{}
+\begin{itemize}
+    \item UML no corresponde con el código: -2.00.
+    \item Código comentado, muerto o de pruebas: -1.00.
+    \item Nombres o formato muy deficientes: -0.50.
+    \item Más de un return en una función: -1.00. Pendiente decidir alcance.
+    \item Break fuera de switch: -1.00. Pendiente decidir alcance.
+    \item Continue: -1.00. Pendiente decidir alcance.
+\end{itemize}
 
 \bloque{UML}{3 puntos}
 \subbloque{Relaciones}{0.5}
 \begin{itemize}
-    \item Falta una relacion o su tipo es incorrecto: -0.15 por caso.
+    \item Falta una relación o su tipo es incorrecto: -0.15 por caso.
     \item Faltan multiplicidades: -0.10 por caso.
 \end{itemize}
 \subbloque{Clases}{0.5}
@@ -70,106 +74,86 @@
 \subbloque{Contenido}{2}
 \begin{itemize}
     \item Faltan atributos: -0.25.
-    \item Faltan metodos principales: -0.25.
+    \item Faltan métodos principales: -0.25.
     \item No se indican visibilidades: -0.25.
-    \item Faltan tipos, parametros o retornos: -0.25.
+    \item Faltan tipos, parámetros o retornos: -0.25.
     \item No se reflejan excepciones propias: -0.20.
-\end{itemize}
-
-\bloque{Main}{1 punto}
-\begin{itemize}
-    \item Fallo en la creacion y/o invocacion de objetos: -0.45.
-    \item Main monolitico sin funciones auxiliares cuando son necesarias: -0.75.
-    \item Main contiene logica de dominio: -0.30.
-\end{itemize}
-
-\bloque{Implementacion general}{5 puntos}
-\subbloque{Navegacion por menus}{0.60}
-\begin{itemize}
-    \item Acceso claro a las opciones principales.
-    \item Navegacion funcional entre menus y opciones.
-    \item Delegacion en clases del sistema.
-\end{itemize}
-\subbloque{Equipar y desequipar}{1.00}
-\begin{itemize}
-    \item Equipar y desequipar correctamente.
-    \item Inventario, equipo, ataque y defensa coherentes.
-    \item Uso correcto de interfaz y polimorfismo.
-    \item Respeto de la encapsulacion.
-\end{itemize}
-\subbloque{Comprar en tienda}{0.80}
-\begin{itemize}
-    \item Compra funcional.
-    \item Tienda, inventario y dinero actualizados.
-    \item Informacion de objetos conservada, incluido metal.
-    \item Encapsulacion entre menu, tienda, personaje e inventario.
-\end{itemize}
-\subbloque{Guardar personaje}{0.50}
-\begin{itemize}
-    \item Guarda el estado actual.
-    \item Conserva informacion principal, equipo e inventario.
-    \item Formato coherente con la lectura.
-\end{itemize}
-\subbloque{Uso de \texttt{toString}}{0.40}
-\begin{itemize}
-    \item Representacion textual util.
-    \item Uso desde el menu para mostrar informacion.
-    \item Salida clara de personaje, inventario, equipo y tienda.
-\end{itemize}
-\subbloque{Herencia de \texttt{Objeto}}{0.90}
-\begin{itemize}
-    \item \texttt{Objeto} como clase base.
-    \item Herencia correcta en arma y armadura.
-    \item No duplicar atributos o logica comun.
-    \item Constructores y comportamiento comun bien planteados.
-\end{itemize}
-\subbloque{Uso de \texttt{enum}}{0.20}
-\begin{itemize}
-    \item Uso cuando hay conjunto cerrado de valores.
-    \item Integracion real en la logica.
-\end{itemize}
-\subbloque{Encapsulacion}{0.60}
-\begin{itemize}
-    \item Datos internos protegidos.
-    \item Responsabilidades en la clase adecuada.
-    \item Sin accesos directos a arrays internos desde fuera.
-    \item Metodos de dominio en lugar de manipular estructuras internas.
 \end{itemize}
 
 \bloque{Excepciones}{1 punto}
 \begin{itemize}
     \item Faltan excepciones propias necesarias: -0.25 por cada una.
-    \item Excepcion no lanzada en sitio adecuado: -0.10 por caso.
-    \item Excepcion no capturada en sitio adecuado: -0.10 por caso.
-    \item Captura generica que oculta errores o vacia el flujo: -0.10.
+    \item Excepción no lanzada en sitio adecuado: -0.10 por caso.
+    \item Excepción no capturada en sitio adecuado: -0.10 por caso.
+    \item Captura genérica que oculta errores o vacía el flujo: -0.10.
     \item No gestiona bien entrada/salida: -0.20.
 \end{itemize}
 
-\bloque{Penalizaciones globales}{ }
+\newpage
+
+\bloque{Main}{1 punto}
+Se valora por grado de cumplimiento: 0, 0.25, 0.5 o 1 sobre su valor máximo.
+
 \begin{itemize}
-    \item UML no corresponde con el codigo: -2.00.
-    \item Codigo comentado, muerto o de pruebas: -1.00.
-    \item Nombres o formato muy deficientes: -0.50.
-    \item Mas de un return en una funcion: -1.00. Pendiente decidir alcance.
-    \item Break fuera de switch: -1.00. Pendiente decidir alcance.
-    \item Continue: -1.00. Pendiente decidir alcance.
+    \item Creación y utilización correcta de objetos.
+    \item Lectura/carga inicial de ficheros integrada correctamente en el arranque, aunque esté delegada en funciones auxiliares o en otra clase.
+    \item Separación del \texttt{main} en funciones auxiliares cuando corresponde, evitando un main monolítico.
+    \item Ausencia de lógica de dominio en \texttt{main}.
 \end{itemize}
 
-\bloque{Techos de nota}{ }
+\bloque{Implementación general}{5 puntos}
+Cada subapartado se valora por grado de cumplimiento: 0, 0.25, 0.5 o 1 sobre su valor máximo.
+
+\subbloque{Navegación por menús}{0.70}
 \begin{itemize}
-    \item No compila: maximo 3.00.
-    \item Compila pero no permite ejecutar un flujo basico: maximo 3.00.
-    \item Usa estructuras explicitamente prohibidas: maximo 3.00.
-    \item No supera la defensa: maximo 3.00.
+    \item Clase \texttt{Menu} bien modularizada en métodos auxiliares.
+    \item Delegación correcta en las clases del sistema, respetando la encapsulación.
+    \item Flujo de uso comprensible para el usuario.
+    \item Lógica de navegación sencilla y eficiente, sin duplicar código innecesariamente.
 \end{itemize}
-
-Un techo no asigna directamente esa calificacion: se corrige sobre ese maximo y las penalizaciones siguen pudiendo restar dentro de ese rango.
-
-\end{multicols}
+\subbloque{Equipar y desequipar}{1.20}
+\begin{itemize}
+    \item Movimiento correcto entre inventario y equipo.
+    \item Reemplazo de equipo sin perder ni duplicar objetos.
+    \item Actualización coherente de ataque y defensa.
+    \item Uso de \texttt{IEquipable} y polimorfismo.
+    \item Distinción correcta entre arma y armaduras.
+    \item Encapsulación entre personaje, inventario y equipo.
+\end{itemize}
+\subbloque{Comprar en tienda}{1.00}
+\begin{itemize}
+    \item Movimiento correcto del objeto desde la tienda al inventario del personaje.
+    \item Actualización coherente del dinero del personaje y del precio del objeto.
+    \item La tienda deja de ofrecer el objeto comprado.
+    \item Conservación de la información completa del objeto comprado, incluido metal.
+    \item Encapsulación entre menú, tienda, personaje e inventario.
+\end{itemize}
+\subbloque{Guardar personaje}{0.70}
+\begin{itemize}
+    \item Escritura del estado actual del personaje en fichero.
+    \item Conservación de datos principales, equipo e inventario.
+    \item Formato coherente con el formato de lectura.
+    \item Uso adecuado de escritura de ficheros sin mezclar responsabilidades.
+    \item Encapsulación: el guardado no debe requerir manipular desde fuera las estructuras internas del personaje.
+\end{itemize}
+\subbloque{Uso de \texttt{toString}}{0.20}
+\begin{itemize}
+    \item Sobrescritura correcta de \texttt{toString} en las clases donde aporta información.
+    \item Salida legible y útil para revisar el estado del sistema.
+    \item Utilización de \texttt{toString} de forma adecuada en las clases.
+\end{itemize}
+\subbloque{Herencia de \texttt{Objeto}}{1.10}
+\begin{itemize}
+    \item \texttt{Objeto} como clase base.
+    \item Herencia correcta en arma y armadura.
+    \item Atributos y comportamiento común ubicados en la clase base.
+    \item Constructores bien encadenados.
+    \item Ausencia de duplicación innecesaria entre clases hijas.
+\end{itemize}
+\subbloque{Uso de \texttt{enum}}{0.10}
+\begin{itemize}
+    \item Uso cuando hay conjunto cerrado de valores.
+    \item Integración real en la lógica.
+\end{itemize}
 
 \end{document}
-
-
-
-
-

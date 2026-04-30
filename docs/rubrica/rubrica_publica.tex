@@ -1,5 +1,5 @@
 ﻿%=====================================
-% Rubrica - Practica completa
+% Rubrica publica - Practica completa
 % Fundamentos de Programacion II
 % Universidad de Castilla-La Mancha
 % Curso 2025/26
@@ -11,27 +11,18 @@
 \usepackage[spanish]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage[margin=1.45cm]{geometry}
-\usepackage{fancyhdr}
+\usepackage[margin=1.2cm]{geometry}
 \usepackage{graphicx}
 \usepackage{enumitem}
-\usepackage{tabularx}
-\usepackage{array}
 \usepackage{xcolor}
 
+\pagestyle{empty}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{3pt}
-\setlist[itemize]{leftmargin=*, itemsep=1pt, topsep=2pt, parsep=0pt}
-\renewcommand{\arraystretch}{1.15}
+\setlength{\parskip}{4pt}
+\setlist[itemize]{leftmargin=*, itemsep=2pt, topsep=2pt, parsep=0pt}
 
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{FPII 25/26}
-\fancyhead[C]{Practica completa}
-\fancyhead[R]{UCLM}
-\fancyfoot[C]{\thepage}
-\renewcommand{\headrulewidth}{0.4pt}
-\setlength{\headheight}{14pt}
+\newcommand{\bloque}[2]{\vspace{5pt}\textbf{#1\if\relax\detokenize{#2}\relax\else{} - #2\fi}\par}
+\newcommand{\subbloque}[2]{\textit{#1 - #2}\par}
 
 \begin{document}
 \normalsize
@@ -45,37 +36,121 @@
 
     \vspace{2pt}
 
-    \textbf{Rubrica practica completa}
+    \textbf{Rúbrica juego RPG (borrador)}
 \end{center}
+\vspace{-4pt}
 
-\textbf{Criterios de evaluacion}
+La práctica se valora sobre 10 puntos. La corrección tendrá en cuenta el funcionamiento del programa, la coherencia entre UML e implementación y la defensa realizada.
 
-La practica se valora sobre 10 puntos. La correccion tendra en cuenta el funcionamiento del programa, la coherencia entre UML e implementacion y la defensa realizada.
-
-\begin{tabularx}{\textwidth}{>{\bfseries}p{3.2cm}p{1.5cm}X}
-Bloque & Puntos & Criterios principales \\
-\hline
-UML & 3.00 & Relaciones (0.50), clases (0.50) y contenido del diagrama (2.00): atributos, metodos, visibilidades, tipos, parametros, retornos y excepciones propias relevantes. \\
-Main y arranque & 1.00 & Creacion de objetos, carga inicial de datos y arranque correcto del flujo principal de la aplicacion. \\
-Implementacion general & 5.00 & Navegacion por menus (0.60), equipar y desequipar (1.00), comprar en tienda (0.80), guardar personaje (0.50), uso de \texttt{toString} (0.40), herencia de \texttt{Objeto} (0.90), uso de \texttt{enum} (0.20) y encapsulacion (0.60). \\
-Excepciones & 1.00 & Uso adecuado de excepciones propias y de excepciones de entrada/salida de Java, lanzadas y capturadas en lugares coherentes. \\
-\end{tabularx}
-
-\vspace{0.3cm}
-\textbf{Implementacion general}
-
+\bloque{Techos de nota}{}
 \begin{itemize}
-    \item Las mecanicas principales deben poder probarse desde el menu: navegar, equipar, desequipar, comprar, guardar y mostrar informacion.
-    \item La solucion debe aplicar de forma razonable los conceptos de POO trabajados: herencia, interfaz, polimorfismo, enumerados y encapsulacion.
-    \item Se valorara que las responsabilidades esten bien repartidas entre las clases y que el codigo sea claro, mantenible y coherente con el diseno.
+    \item No compila: máximo 3.00.
+    \item Usa estructuras explícitamente prohibidas: máximo 3.00.
+    \item No supera la defensa: máximo 3.00.
 \end{itemize}
 
-\textbf{Defensa}
+\bloque{Penalizaciones globales}{}
+\begin{itemize}
+    \item UML no corresponde con el código.
+    \item Código comentado, muerto o de pruebas.
+    \item Nombres o formato muy deficientes.
+    \item Más de un \texttt{return} en una función.
+    \item Uso de \texttt{break} fuera de \texttt{switch}.
+    \item Uso de \texttt{continue}.
+\end{itemize}
 
-La defensa forma parte de la evaluacion. El alumnado debe poder explicar las decisiones de diseno e implementacion tomadas en su practica.
+\bloque{UML}{3 puntos}
+\subbloque{Relaciones}{0.5}
+\begin{itemize}
+    \item Relaciones principales del sistema.
+    \item Tipo de relación utilizado.
+    \item Multiplicidades.
+\end{itemize}
+\subbloque{Clases}{0.5}
+\begin{itemize}
+    \item Clases relevantes del sistema.
+    \item Ausencia de clases que no corresponden al diseño.
+    \item Tipo correcto de cada elemento UML.
+\end{itemize}
+\subbloque{Contenido}{2}
+\begin{itemize}
+    \item Atributos y métodos principales.
+    \item Visibilidades.
+    \item Tipos, parámetros y retornos.
+    \item Excepciones propias relevantes.
+\end{itemize}
+
+\bloque{Excepciones}{1 punto}
+\begin{itemize}
+    \item Creación de excepciones propias necesarias.
+    \item Lanzamiento de excepciones en el lugar adecuado.
+    \item Captura de excepciones en el lugar adecuado.
+    \item Capturas que no oculten errores ni vacíen el flujo del programa.
+    \item Gestión de excepciones de entrada/salida.
+\end{itemize}
+
+\bloque{Main}{1 punto}
+\begin{itemize}
+    \item Creación y utilización correcta de objetos.
+    \item Lectura/carga inicial de ficheros integrada correctamente en el arranque, aunque esté delegada en funciones auxiliares o en otra clase.
+    \item Separación del \texttt{main} en funciones auxiliares cuando corresponde, evitando un main monolítico.
+    \item Ausencia de lógica de dominio en \texttt{main}.
+\end{itemize}
+
+\bloque{Implementación general}{5 puntos}
+\subbloque{Navegación por menús}{0.70}
+\begin{itemize}
+    \item Clase \texttt{Menu} bien modularizada en métodos auxiliares.
+    \item Delegación correcta en las clases del sistema, respetando la encapsulación.
+    \item Flujo de uso comprensible para el usuario.
+    \item Lógica de navegación sencilla y eficiente, sin duplicar código innecesariamente.
+\end{itemize}
+\subbloque{Equipar y desequipar}{1.20}
+\begin{itemize}
+    \item Movimiento correcto entre inventario y equipo.
+    \item Reemplazo de equipo sin perder ni duplicar objetos.
+    \item Actualización coherente de ataque y defensa.
+    \item Uso de \texttt{IEquipable} y polimorfismo.
+    \item Distinción correcta entre arma y armaduras.
+    \item Encapsulación entre personaje, inventario y equipo.
+\end{itemize}
+\subbloque{Comprar en tienda}{1.00}
+\begin{itemize}
+    \item Movimiento correcto del objeto desde la tienda al inventario del personaje.
+    \item Actualización coherente del dinero del personaje y del precio del objeto.
+    \item La tienda deja de ofrecer el objeto comprado.
+    \item Conservación de la información completa del objeto comprado, incluido metal.
+    \item Encapsulación entre menú, tienda, personaje e inventario.
+\end{itemize}
+\subbloque{Guardar personaje}{0.70}
+\begin{itemize}
+    \item Escritura del estado actual del personaje en fichero.
+    \item Conservación de datos principales, equipo e inventario.
+    \item Formato coherente con el formato de lectura.
+    \item Uso adecuado de escritura de ficheros sin mezclar responsabilidades.
+    \item Encapsulación: el guardado no debe requerir manipular desde fuera las estructuras internas del personaje.
+\end{itemize}
+\subbloque{Uso de \texttt{toString}}{0.20}
+\begin{itemize}
+    \item Sobrescritura correcta de \texttt{toString} en las clases donde aporta información.
+    \item Salida legible y útil para revisar el estado del sistema.
+    \item Utilización de \texttt{toString} de forma adecuada en las clases.
+\end{itemize}
+\subbloque{Herencia de \texttt{Objeto}}{1.10}
+\begin{itemize}
+    \item \texttt{Objeto} como clase base.
+    \item Herencia correcta en arma y armadura.
+    \item Atributos y comportamiento común ubicados en la clase base.
+    \item Constructores bien encadenados.
+    \item Ausencia de duplicación innecesaria entre clases hijas.
+\end{itemize}
+\subbloque{Uso de \texttt{enum}}{0.10}
+\begin{itemize}
+    \item Uso cuando hay conjunto cerrado de valores.
+    \item Integración real en la lógica.
+\end{itemize}
+
+\bloque{Defensa}{}
+La defensa forma parte de la evaluación. El alumnado debe poder explicar las decisiones de diseño e implementación tomadas en su práctica.
 
 \end{document}
-
-
-
-
