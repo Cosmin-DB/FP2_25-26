@@ -21,8 +21,7 @@
 \setlength{\parskip}{4pt}
 \setlist[itemize]{leftmargin=*, itemsep=2pt, topsep=2pt, parsep=0pt}
 
-\newcommand{\bloque}[2]{\vspace{5pt}\textbf{#1\if\relax\detokenize{#2}\relax\else{} - #2\fi}\par}
-\newcommand{\subbloque}[2]{\textit{#1 - #2}\par}
+
 
 \begin{document}
 \normalsize
@@ -34,62 +33,56 @@
     \hspace{1cm}
     \includegraphics[height=2cm]{../../logos/Logo_DTSI.jpg}
 
-    \vspace{2pt}
+    \vspace{20pt}
 
-    \textbf{Rúbrica juego RPG (borrador)}
+    \textbf{Rúbrica proyecto de prácticas FPII 2025/26}
 \end{center}
-\vspace{-4pt}
+\vspace{15pt}
 
 La práctica se valora sobre 10 puntos. La corrección tendrá en cuenta el funcionamiento del programa, la coherencia entre UML e implementación y la defensa realizada.
 
-\bloque{Techos de nota}{}
+\section{Techos de nota}
 \begin{itemize}
     \item No compila: máximo 3.00.
-    \item Usa estructuras explícitamente prohibidas: máximo 3.00.
-    \item No supera la defensa: máximo 3.00.
+    \item Uso de estructuras explícitamente prohibidas: máximo 3.00.
+    \item No se supera la defensa: máximo 3.00.
 \end{itemize}
 
-\bloque{Penalizaciones globales}{}
+\section{Penalizaciones globales}
 \begin{itemize}
-    \item UML no corresponde con el código.
-    \item Código comentado, muerto o de pruebas.
+    \item El diagrama UML no se corresponde con el código implementado.
+    \item Limpieza general (código comentado, muerto o de pruebas).
     \item Nombres o formato muy deficientes.
     \item Más de un \texttt{return} en una función.
     \item Uso de \texttt{break} fuera de \texttt{switch}.
     \item Uso de \texttt{continue}.
 \end{itemize}
 
-\bloque{UML}{3 puntos}
-\subbloque{Relaciones}{0.5}
+\section{Diagrama UML - 3 puntos}
+\subsection{Relaciones - 0.5}
 \begin{itemize}
-    \item Relaciones principales del sistema.
-    \item Tipo de relación utilizado.
-    \item Multiplicidades.
+    \item Relaciones entre las clases principales.
+    \item Tipo de relación correctamente representado.
+    \item Multiplicidad cuando corresponda.
 \end{itemize}
-\subbloque{Clases}{0.5}
+\subsection{Clases - 0.5}
 \begin{itemize}
-    \item Clases relevantes del sistema.
-    \item Ausencia de clases que no corresponden al diseño.
-    \item Tipo correcto de cada elemento UML.
+    \item Clases correctamente identificadas.
+    \item Ausencia de clases innecesarias o irrelevantes.
+    \item Tipo correcto de elemento en UML (clase, interfaz, etc.).
 \end{itemize}
-\subbloque{Contenido}{2}
+\subsection{Contenido - 2}
 \begin{itemize}
-    \item Atributos y métodos principales.
-    \item Visibilidades.
+    \item Atributos y métodos principales de cada clase
+    \item Modificadores de visibilidad.
     \item Tipos, parámetros y retornos.
-    \item Excepciones propias relevantes.
+    \item Excepciones lanzadas por los métodos.
 \end{itemize}
 
-\bloque{Excepciones}{1 punto}
-\begin{itemize}
-    \item Creación de excepciones propias necesarias.
-    \item Lanzamiento de excepciones en el lugar adecuado.
-    \item Captura de excepciones en el lugar adecuado.
-    \item Capturas que no oculten errores ni vacíen el flujo del programa.
-    \item Gestión de excepciones de entrada/salida.
-\end{itemize}
+\section{Código - 7 puntos}
 
-\bloque{Main}{1 punto}
+
+\subsection{Main - 1 punto}
 \begin{itemize}
     \item Creación y utilización correcta de objetos.
     \item Lectura/carga inicial de ficheros integrada correctamente en el arranque, aunque esté delegada en funciones auxiliares o en otra clase.
@@ -97,15 +90,24 @@ La práctica se valora sobre 10 puntos. La corrección tendrá en cuenta el func
     \item Ausencia de lógica de dominio en \texttt{main}.
 \end{itemize}
 
-\bloque{Implementación general}{5 puntos}
-\subbloque{Navegación por menús}{0.70}
+\subsection{Excepciones - 1 punto}
+\begin{itemize}
+    \item Creación de excepciones propias necesarias.
+    \item Lanzamiento de excepciones en el lugar adecuado.
+    \item Captura de excepciones en el lugar adecuado.
+    \item Capturas que no oculten errores ni vacíen el flujo del programa (\texttt{catch} genérico, \texttt{catch} vacío, sin feedback, etc.).
+    \item Gestión de excepciones de entrada/salida.
+\end{itemize}
+
+\subsection{Implementación general - 5 puntos}
+\subsubsection{Navegación por menús - 0.70}
 \begin{itemize}
     \item Clase \texttt{Menu} bien modularizada en métodos auxiliares.
     \item Delegación correcta en las clases del sistema, respetando la encapsulación.
     \item Flujo de uso comprensible para el usuario.
     \item Lógica de navegación sencilla y eficiente, sin duplicar código innecesariamente.
 \end{itemize}
-\subbloque{Equipar y desequipar}{1.20}
+\subsubsection{Equipar y desequipar - 1.20}
 \begin{itemize}
     \item Movimiento correcto entre inventario y equipo.
     \item Reemplazo de equipo sin perder ni duplicar objetos.
@@ -114,7 +116,7 @@ La práctica se valora sobre 10 puntos. La corrección tendrá en cuenta el func
     \item Distinción correcta entre arma y armaduras.
     \item Encapsulación entre personaje, inventario y equipo.
 \end{itemize}
-\subbloque{Comprar en tienda}{1.00}
+\subsubsection{Comprar en tienda - 1.00}
 \begin{itemize}
     \item Movimiento correcto del objeto desde la tienda al inventario del personaje.
     \item Actualización coherente del dinero del personaje y del precio del objeto.
@@ -122,7 +124,7 @@ La práctica se valora sobre 10 puntos. La corrección tendrá en cuenta el func
     \item Conservación de la información completa del objeto comprado, incluido metal.
     \item Encapsulación entre menú, tienda, personaje e inventario.
 \end{itemize}
-\subbloque{Guardar personaje}{0.70}
+\subsubsection{Guardar personaje - 0.70}
 \begin{itemize}
     \item Escritura del estado actual del personaje en fichero.
     \item Conservación de datos principales, equipo e inventario.
@@ -130,27 +132,27 @@ La práctica se valora sobre 10 puntos. La corrección tendrá en cuenta el func
     \item Uso adecuado de escritura de ficheros sin mezclar responsabilidades.
     \item Encapsulación: el guardado no debe requerir manipular desde fuera las estructuras internas del personaje.
 \end{itemize}
-\subbloque{Uso de \texttt{toString}}{0.20}
+\subsubsection{Uso de \texttt{toString} - 0.20}
 \begin{itemize}
     \item Sobrescritura correcta de \texttt{toString} en las clases donde aporta información.
     \item Salida legible y útil para revisar el estado del sistema.
     \item Utilización de \texttt{toString} de forma adecuada en las clases.
 \end{itemize}
-\subbloque{Herencia de \texttt{Objeto}}{1.10}
+\subsubsection{Herencia de \texttt{Objeto} - 1.10}
 \begin{itemize}
     \item \texttt{Objeto} como clase base.
-    \item Herencia correcta en arma y armadura.
+    \item Herencia correcta en las clases de objetos (armas, armaduras, etc.).
     \item Atributos y comportamiento común ubicados en la clase base.
     \item Constructores bien encadenados.
     \item Ausencia de duplicación innecesaria entre clases hijas.
 \end{itemize}
-\subbloque{Uso de \texttt{enum}}{0.10}
+\subsubsection{Uso de \texttt{enum} - 0.10}
 \begin{itemize}
     \item Uso cuando hay conjunto cerrado de valores.
     \item Integración real en la lógica.
 \end{itemize}
 
-\bloque{Defensa}{}
-La defensa forma parte de la evaluación. El alumnado debe poder explicar las decisiones de diseño e implementación tomadas en su práctica.
+\section{Defensa}
+La defensa forma parte de la evaluación. El alumnado debe poder explicar las decisiones de diseño e implementación tomadas en su práctica de forma clara y razonada. Se valorará la capacidad de argumentación y la comprensión profunda del código y el diseño, así como la capacidad de responder a preguntas sobre posibles mejoras o alternativas.
 
 \end{document}
