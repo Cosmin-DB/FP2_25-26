@@ -1,0 +1,232 @@
+﻿%=====================================
+% Guion de Prácticas - Hito 4
+% Grado en Ingeniería Informática
+% Universidad de Castilla-La Mancha
+% Curso 2025/26
+%=====================================
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancybox}
+\usepackage{fancyvrb}
+
+\onehalfspacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{FPII 25/26}
+\fancyhead[C]{Hito 4: Recuperación extraordinaria}
+\fancyhead[R]{UCLM}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14.5pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+    urlcolor=blue
+}
+
+\definecolor{importante}{RGB}{220,20,60}
+\definecolor{nota}{RGB}{0,100,200}
+\definecolor{advertencia}{RGB}{255,140,0}
+
+\newcommand{\importante}[1]{%
+    \begin{center}
+    \fcolorbox{importante}{white}{\begin{minipage}{0.95\linewidth}\textbf{\textcolor{importante}{IMPORTANTE:}} #1\end{minipage}}
+    \end{center}
+}
+
+\newcommand{\nota}[1]{%
+    \begin{center}
+    \fcolorbox{nota}{white}{\begin{minipage}{0.95\linewidth}\textbf{\textcolor{nota}{NOTA:}} #1\end{minipage}}
+    \end{center}
+}
+
+\begin{document}
+
+\pagenumbering{gobble}
+
+\begin{titlepage}
+    \centering
+
+    \includegraphics[height=2cm]{../../../logos/Logo_UCLM_2025.pdf}
+    \hspace{1cm}
+    \includegraphics[height=2cm]{../../../logos/Logo_FFCCSSTTI.png}
+    \hspace{1cm}
+    \includegraphics[height=2cm]{../../../logos/Logo_DTSI.jpg}
+
+    \vspace{0.5cm}
+
+    \large \textbf{Grado en Ingeniería Informática} \\
+    \Large \textbf{Fundamentos de Programación II 25/26} \\
+    \vspace{8cm}
+
+    {\Huge \textbf{Hito 4:}} \\
+    \vspace{0.5cm}
+    {\Huge \textbf{Recuperación del proyecto práctico}} \\
+    \vspace{0.5cm}
+    {\Large \textbf{Convocatoria extraordinaria}} \\
+    \vspace{0.4cm}
+    {\large Corrección de H1--H3 y ampliación final}
+\end{titlepage}
+
+\pagenumbering{arabic}
+
+\vspace*{0.01cm}
+\section*{Resumen}
+
+Este hito está destinado al alumnado que debe recuperar el proyecto práctico en convocatoria extraordinaria. La entrega no consiste en realizar una práctica independiente, sino en presentar una versión completa, corregida e integrada del proyecto desarrollado en los hitos 1, 2 y 3, añadiendo además una ampliación final de alcance reducido.
+
+\importante{La recuperación debe entregar un proyecto completo y funcional. No basta con implementar únicamente la nueva funcionalidad del Hito 4 si el sistema no conserva correctamente el comportamiento exigido en los hitos anteriores.}
+
+\section{Objetivos}
+
+\begin{itemize}
+    \item Corregir e integrar el trabajo realizado en los hitos 1, 2 y 3 en un único proyecto coherente.
+    \item Mantener la funcionalidad previa del videojuego RPG: personajes, inventarios, tienda, equipamiento, ficheros y excepciones.
+    \item Añadir una nueva ampliación basada en límite de peso y transferencia segura de objetos.
+    \item Garantizar que las operaciones que fallan no dejan el sistema en un estado inconsistente.
+    \item Consolidar el proceso de trabajo por fases: análisis, diseño e implementación.
+\end{itemize}
+
+\section{Normas de trabajo}
+
+El ejercicio se entregará en la tarea habilitada en Campus Virtual para la convocatoria extraordinaria. Salvo indicación expresa del profesorado, se deberán seguir estas normas:
+
+\begin{itemize}
+    \item \textbf{Entrega}
+    \begin{itemize}
+        \item Todos los archivos deberán comprimirse en un único archivo ZIP.
+        \item El nombre del ZIP debe seguir el formato \texttt{LX\_XX\_H4\_EXTRA.zip} según el grupo de Campus Virtual.
+        \item El ZIP deberá incluir:
+        \begin{itemize}
+            \item Memoria final de recuperación, explicando qué se ha corregido de H1--H3 y qué se ha añadido en H4.
+            \item Imagen del diagrama de clases y relaciones UML (\texttt{.png} o \texttt{.jpg}).
+            \item Únicamente la carpeta \texttt{src} con los archivos \texttt{.java}.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Restricciones de implementación}
+    \begin{itemize}
+        \item No utilizar múltiples \texttt{return} en una misma función.
+        \item No utilizar \texttt{continue}.
+        \item No utilizar \texttt{break}, salvo en sentencias \texttt{switch}.
+        \item No utilizar \texttt{ArrayList}.
+    \end{itemize}
+    \item Queda totalmente \textbf{prohibido el uso de Inteligencia Artificial} para realizar estas prácticas. Cualquier indicio de su utilización será penalizado.
+\end{itemize}
+
+\clearpage
+\section{Fases del desarrollo orientado a objetos}
+
+Se pide seguir las fases del desarrollo de software orientado a objetos:
+
+\begin{itemize}
+    \item \textbf{Análisis:} En esta fase se identifican los requisitos del sistema. Intentamos encontrar los objetos y relaciones adecuados para el problema propuesto. Investigamos el problema centrándonos en los conceptos del dominio del problema, sin preocuparnos por la implementación. Es importante entender el problema y definir claramente los requisitos antes de pasar a la siguiente fase.
+    \item \textbf{Diseño:} En esta fase se define la arquitectura del sistema. Partiendo de los objetos y relaciones identificados en el análisis, se diseña la estructura del sistema. Se definen las clases, sus atributos y métodos (aún sin pensar en la implementación, solo en aquella funcionalidad que cada clase debe tener), así como las relaciones entre ellas (herencia, composición, etc.). Es importante diseñar un sistema modular y flexible que permita cambios futuros sin afectar a toda la aplicación. En esta fase es fundamental el uso de diagramas UML (especialmente el diagrama de clases).
+    \item \textbf{Implementación:} Únicamente cuando tenemos claro el diseño, pasamos a la implementación. En esta fase se escribe el código fuente de la aplicación siguiendo el diseño establecido. Es importante seguir buenas prácticas de programación y mantener el código limpio y organizado.
+\end{itemize}
+
+\section{Desarrollo de la práctica}
+
+La práctica se divide en dos partes. La primera parte consiste en recuperar el proyecto anterior, corrigiendo los problemas de análisis, diseño o implementación que impidan que el sistema funcione como se pedía en H1, H2 y H3. La segunda parte añade una ampliación final que obliga a razonar sobre el estado del sistema cuando un objeto se mueve de un lugar a otro.
+
+\subsection{Parte A: recuperación de H1, H2 y H3}
+
+El proyecto entregado debe conservar, al menos, la funcionalidad exigida en los hitos anteriores:
+
+\begin{itemize}
+    \item \textbf{Hito 1:} personaje, objetos básicos, armas, metales, inventario de tamaño fijo, equipar y desequipar arma, y menú por consola.
+    \item \textbf{Hito 2:} varios personajes, tienda, compra de objetos, armaduras, interfaz de equipamiento, \texttt{enum} para los tipos de armadura y equipo de cuatro posiciones.
+    \item \textbf{Hito 3:} excepciones propias del dominio, gestión de errores de entrada/salida, exportación del personaje actual a fichero y mantenimiento de un formato coherente con los ficheros del sistema.
+\end{itemize}
+
+El código debe compilar, arrancar correctamente y permitir usar el menú principal sin errores iniciales. Si una funcionalidad previa se rompe al añadir H4, se considerará un problema de integración.
+
+\subsection{Parte B: ampliación del Hito 4}
+
+En este hito se añade un límite de peso al inventario de cada personaje y se incorporan operaciones seguras de movimiento de objetos entre contenedores. La idea general de estas operaciones es:
+
+\begin{center}
+\texttt{origen} $\rightarrow$ \texttt{objeto} $\rightarrow$ \texttt{destino}
+\end{center}
+
+El origen puede ser el inventario de un personaje. El destino puede ser la tienda o el inventario de otro personaje. La operación debe comprobar todas las condiciones necesarias antes de modificar definitivamente el estado del sistema.
+
+\subsubsection{Límite de peso del inventario}
+
+Cada personaje tendrá un peso máximo de inventario de \textbf{20 unidades}. Para calcular el peso ocupado se sumará el campo \texttt{peso} de todos los objetos almacenados en su inventario. No se deben inventar nuevas fórmulas de peso ni recalcular el peso a partir de otros atributos.
+
+Se deberá añadir una nueva excepción propia:
+
+\begin{itemize}
+    \item \texttt{PesoMaximoSuperadoException}: se producirá cuando se intente añadir a un inventario un objeto que haría que se superase el peso máximo permitido.
+\end{itemize}
+
+El menú deberá permitir consultar, junto con el inventario del personaje, el peso ocupado y el peso máximo disponible.
+
+\subsubsection{Venta de objetos a la tienda}
+
+El personaje podrá vender a la tienda un objeto de su inventario. Al realizar la venta:
+
+\begin{itemize}
+    \item el objeto se elimina del inventario del personaje;
+    \item el objeto se añade al inventario de la tienda;
+    \item el personaje recibe como dinero el precio del objeto vendido.
+\end{itemize}
+
+La venta solo debe completarse si la tienda tiene hueco para recibir el objeto. Si la posición elegida está vacía o la tienda no tiene huecos libres, la operación no se realiza y el personaje no recibe dinero.
+
+\subsubsection{Transferencia de objetos entre personajes}
+
+También se deberá permitir transferir un objeto desde el inventario de un personaje al inventario de otro personaje. En esta versión la transferencia entre personajes será gratuita: no hay intercambio de dinero.
+
+La transferencia solo debe completarse si:
+
+\begin{itemize}
+    \item la posición de origen contiene un objeto;
+    \item el personaje destino tiene hueco libre en el inventario;
+    \item el objeto no hace que el personaje destino supere su peso máximo.
+\end{itemize}
+
+Si alguna de estas condiciones falla, el objeto debe permanecer en el inventario del personaje origen.
+
+\subsection{Consistencia de las operaciones}
+
+Las nuevas operaciones deben ser seguras. Esto significa que no se puede perder ni duplicar ningún objeto cuando se produce un error. Tampoco se puede modificar el dinero de un personaje si la venta no ha terminado correctamente.
+
+En particular:
+
+\begin{itemize}
+    \item Si el origen está vacío, se utilizará \texttt{PosicionVaciaException} o una excepción equivalente ya definida en el proyecto.
+    \item Si el destino no tiene hueco, se utilizará \texttt{InventarioLlenoException}.
+    \item Si el destino supera el peso máximo, se utilizará \texttt{PesoMaximoSuperadoException}.
+    \item Si una operación falla, el estado del sistema debe quedar igual que antes de intentar la operación.
+\end{itemize}
+
+\subsection{Ficheros y restricciones}
+
+No se debe cambiar el formato de los ficheros \texttt{personajes.txt} y \texttt{tienda.txt}. El campo \texttt{peso} ya existe en los objetos y debe utilizarse tal como aparece en los ficheros.
+
+La ampliación debe seguir trabajando con arrays de tamaño fijo y posiciones vacías representadas mediante \texttt{null}. No se permite usar \texttt{ArrayList}, \texttt{HashMap} ni otras colecciones dinámicas.
+
+Se pide actualizar el diagrama UML para reflejar los cambios introducidos en esta recuperación, adaptar las clases necesarias e incorporar las nuevas opciones al menú. La memoria final deberá explicar qué problemas se han corregido respecto a los hitos anteriores y cómo se ha diseñado la nueva funcionalidad del Hito 4.
+
+\end{document}

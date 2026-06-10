@@ -1,0 +1,7 @@
+ARMA;MandobleViejo;90;7;20;140.0;18;81
+ARMA;LanzaCorta;55;4;11;180.0;6;90
+ARMADURA;CascoAcero;70;3;CABEZA;8
+ARMADURA;PetoHierro;110;8;CUERPO;14
+ARMADURA;GrebasCuero;40;2;PIES;4
+METAL;LingotePlata;60;2;5;92;Ag
+METAL;LingoteTitanio;140;3;10;74;Ti
