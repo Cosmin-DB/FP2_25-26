@@ -93,17 +93,19 @@
 \vspace*{0.01cm}
 \section*{Resumen}
 
-Este hito está destinado al alumnado que debe recuperar el proyecto práctico en convocatoria extraordinaria. La entrega no consiste en realizar una práctica independiente, sino en presentar una versión completa, corregida e integrada del proyecto desarrollado en los hitos 1, 2 y 3, añadiendo además una ampliación final de alcance reducido.
+En esta convocatoria extraordinaria se plantea una recuperación del proyecto práctico desarrollado durante el curso. El trabajo consiste en revisar el sistema construido en los hitos anteriores, corregir los problemas que hayan impedido alcanzar los objetivos mínimos y cerrar una versión integrada del videojuego RPG.
 
-\importante{La recuperación debe entregar un proyecto completo y funcional. No basta con implementar únicamente la nueva funcionalidad del Hito 4 si el sistema no conserva correctamente el comportamiento exigido en los hitos anteriores.}
+Además, se incorporará una ampliación final relacionada con el peso de los objetos y con el movimiento de objetos entre personajes y tienda. Esta ampliación tiene un alcance reducido, pero obliga a razonar sobre el estado del sistema cuando una operación afecta a más de una parte del juego.
+
+\importante{La entrega deberá funcionar como un proyecto completo. La ampliación del Hito 4 se evaluará sobre una versión corregida e integrada de los hitos anteriores.}
 
 \section{Objetivos}
 
 \begin{itemize}
-    \item Corregir e integrar el trabajo realizado en los hitos 1, 2 y 3 en un único proyecto coherente.
-    \item Mantener la funcionalidad previa del videojuego RPG: personajes, inventarios, tienda, equipamiento, ficheros y excepciones.
-    \item Añadir una nueva ampliación basada en límite de peso y transferencia segura de objetos.
-    \item Garantizar que las operaciones que fallan no dejan el sistema en un estado inconsistente.
+    \item Revisar, corregir e integrar el trabajo realizado en los hitos anteriores.
+    \item Mantener la coherencia entre análisis, diseño e implementación en una versión completa del proyecto.
+    \item Ampliar el modelo del videojuego teniendo en cuenta el peso de los objetos.
+    \item Gestionar operaciones que mueven objetos entre distintas partes del sistema sin dejar estados inconsistentes.
     \item Consolidar el proceso de trabajo por fases: análisis, diseño e implementación.
 \end{itemize}
 
@@ -146,87 +148,20 @@ Se pide seguir las fases del desarrollo de software orientado a objetos:
 
 \section{Desarrollo de la práctica}
 
-La práctica se divide en dos partes. La primera parte consiste en recuperar el proyecto anterior, corrigiendo los problemas de análisis, diseño o implementación que impidan que el sistema funcione como se pedía en H1, H2 y H3. La segunda parte añade una ampliación final que obliga a razonar sobre el estado del sistema cuando un objeto se mueve de un lugar a otro.
+En esta recuperación se parte del sistema desarrollado en los hitos anteriores. Antes de incorporar la ampliación final, el proyecto deberá revisarse para que mantenga de forma integrada la funcionalidad trabajada durante el curso: lectura de datos desde ficheros, gestión de personajes, inventarios, equipo, tienda, compra de objetos, tratamiento de errores y escritura de información del sistema cuando corresponda.
 
-\subsection{Parte A: recuperación de H1, H2 y H3}
+La entrega debe arrancar correctamente, permitir la navegación por el menú y conservar la coherencia entre los datos leídos, los objetos creados durante la ejecución y la información que se muestra al usuario. Si al recuperar una parte del proyecto se rompe otra funcionalidad previa, se considerará un problema de integración.
 
-El proyecto entregado debe conservar, al menos, la funcionalidad exigida en los hitos anteriores:
+A partir de esa base, el sistema deberá tener en cuenta que los objetos ocupan peso. En los hitos anteriores el peso formaba parte de la información de cada objeto, pero no limitaba las acciones del personaje. En esta versión, cada personaje podrá cargar como máximo \textbf{20 unidades de peso}, de modo que no todos los movimientos de objetos serán válidos.
 
-\begin{itemize}
-    \item \textbf{Hito 1:} personaje, objetos básicos, armas, metales, inventario de tamaño fijo, equipar y desequipar arma, y menú por consola.
-    \item \textbf{Hito 2:} varios personajes, tienda, compra de objetos, armaduras, interfaz de equipamiento, \texttt{enum} para los tipos de armadura y equipo de cuatro posiciones.
-    \item \textbf{Hito 3:} excepciones propias del dominio, gestión de errores de entrada/salida, exportación del personaje actual a fichero y mantenimiento de un formato coherente con los ficheros del sistema.
-\end{itemize}
+La ampliación se centra en operaciones en las que un objeto sale de un lugar del sistema y pasa a otro. Además de la compra ya incorporada en hitos anteriores, se añadirá la posibilidad de que un personaje entregue un objeto a la tienda a cambio de dinero y de que un objeto pase de un personaje a otro. Estas operaciones deberán integrarse en el menú de forma natural, manteniendo el estilo de interacción usado hasta ahora.
 
-El código debe compilar, arrancar correctamente y permitir usar el menú principal sin errores iniciales. Si una funcionalidad previa se rompe al añadir H4, se considerará un problema de integración.
+El punto importante de este hito es la consistencia del estado. Si una operación no puede completarse porque falta espacio, porque se supera el peso permitido o porque la posición seleccionada no contiene ningún objeto, el programa deberá tratar la situación como un error del dominio y el sistema deberá quedar como estaba antes de intentar la acción. No debe perderse ni duplicarse ningún objeto, y el dinero de los personajes solo deberá cambiar cuando la operación correspondiente haya terminado correctamente.
 
-\subsection{Parte B: ampliación del Hito 4}
+El tratamiento de estas nuevas situaciones deberá seguir la línea del Hito 3, incorporando las excepciones propias que sean necesarias y capturándolas en el nivel adecuado del programa. También se deberá actualizar el diagrama UML para reflejar la solución diseñada y explicar en la memoria final qué problemas se han corregido de los hitos anteriores y cómo se ha integrado la ampliación del Hito 4.
 
-En este hito se añade un límite de peso al inventario de cada personaje y se incorporan operaciones seguras de movimiento de objetos entre contenedores. La idea general de estas operaciones es:
+\subsection{Ficheros de entrada}
 
-\begin{center}
-\texttt{origen} $\rightarrow$ \texttt{objeto} $\rightarrow$ \texttt{destino}
-\end{center}
-
-El origen puede ser el inventario de un personaje. El destino puede ser la tienda o el inventario de otro personaje. La operación debe comprobar todas las condiciones necesarias antes de modificar definitivamente el estado del sistema.
-
-\subsubsection{Límite de peso del inventario}
-
-Cada personaje tendrá un peso máximo de inventario de \textbf{20 unidades}. Para calcular el peso ocupado se sumará el campo \texttt{peso} de todos los objetos almacenados en su inventario. No se deben inventar nuevas fórmulas de peso ni recalcular el peso a partir de otros atributos.
-
-Se deberá añadir una nueva excepción propia:
-
-\begin{itemize}
-    \item \texttt{PesoMaximoSuperadoException}: se producirá cuando se intente añadir a un inventario un objeto que haría que se superase el peso máximo permitido.
-\end{itemize}
-
-El menú deberá permitir consultar, junto con el inventario del personaje, el peso ocupado y el peso máximo disponible.
-
-\subsubsection{Venta de objetos a la tienda}
-
-El personaje podrá vender a la tienda un objeto de su inventario. Al realizar la venta:
-
-\begin{itemize}
-    \item el objeto se elimina del inventario del personaje;
-    \item el objeto se añade al inventario de la tienda;
-    \item el personaje recibe como dinero el precio del objeto vendido.
-\end{itemize}
-
-La venta solo debe completarse si la tienda tiene hueco para recibir el objeto. Si la posición elegida está vacía o la tienda no tiene huecos libres, la operación no se realiza y el personaje no recibe dinero.
-
-\subsubsection{Transferencia de objetos entre personajes}
-
-También se deberá permitir transferir un objeto desde el inventario de un personaje al inventario de otro personaje. En esta versión la transferencia entre personajes será gratuita: no hay intercambio de dinero.
-
-La transferencia solo debe completarse si:
-
-\begin{itemize}
-    \item la posición de origen contiene un objeto;
-    \item el personaje destino tiene hueco libre en el inventario;
-    \item el objeto no hace que el personaje destino supere su peso máximo.
-\end{itemize}
-
-Si alguna de estas condiciones falla, el objeto debe permanecer en el inventario del personaje origen.
-
-\subsection{Consistencia de las operaciones}
-
-Las nuevas operaciones deben ser seguras. Esto significa que no se puede perder ni duplicar ningún objeto cuando se produce un error. Tampoco se puede modificar el dinero de un personaje si la venta no ha terminado correctamente.
-
-En particular:
-
-\begin{itemize}
-    \item Si el origen está vacío, se utilizará \texttt{PosicionVaciaException} o una excepción equivalente ya definida en el proyecto.
-    \item Si el destino no tiene hueco, se utilizará \texttt{InventarioLlenoException}.
-    \item Si el destino supera el peso máximo, se utilizará \texttt{PesoMaximoSuperadoException}.
-    \item Si una operación falla, el estado del sistema debe quedar igual que antes de intentar la operación.
-\end{itemize}
-
-\subsection{Ficheros y restricciones}
-
-No se debe cambiar el formato de los ficheros \texttt{personajes.txt} y \texttt{tienda.txt}. El campo \texttt{peso} ya existe en los objetos y debe utilizarse tal como aparece en los ficheros.
-
-La ampliación debe seguir trabajando con arrays de tamaño fijo y posiciones vacías representadas mediante \texttt{null}. No se permite usar \texttt{ArrayList}, \texttt{HashMap} ni otras colecciones dinámicas.
-
-Se pide actualizar el diagrama UML para reflejar los cambios introducidos en esta recuperación, adaptar las clases necesarias e incorporar las nuevas opciones al menú. La memoria final deberá explicar qué problemas se han corregido respecto a los hitos anteriores y cómo se ha diseñado la nueva funcionalidad del Hito 4.
+No se modifica el formato de los ficheros \texttt{personajes.txt} y \texttt{tienda.txt}. La ampliación deberá trabajar con la información ya disponible en esos ficheros, manteniendo la compatibilidad con la estructura utilizada en los hitos anteriores.
 
 \end{document}

@@ -2,8 +2,9 @@
 
 Fecha: 2026-06-08
 
-Estado: primer borrador de enunciado redactado en
-`enunciado/memoria_H4.tex`. Pendiente de revision final.
+Estado: segundo borrador de enunciado redactado en
+`enunciado/memoria_H4.tex`, ajustado al estilo de H1, H2 y H3. Pendiente de
+revision final.
 
 ## Contexto
 
@@ -49,6 +50,17 @@ dinero si corresponde, y consistencia del estado.
   si una operacion falla, no debe perderse ni duplicarse ningun objeto, ni
   cambiarse dinero de forma incorrecta.
 
+## Regla de estilo del enunciado
+
+El H4 de recuperacion debe leerse como los enunciados H1, H2 y H3: plantear el
+contexto, el comportamiento esperado y los criterios de dominio en prosa, sin
+convertir el documento en una guia de implementacion. En la parte de
+recuperacion no se deben dar pistas en forma de listado de clases o nombres
+concretos que el alumnado deba reproducir; debe quedar claro que deben recuperar
+el proyecto anterior, pero sin resolverles el diseno. En la ampliacion final se
+debe describir que problema aparece al mover objetos y controlar el peso, no la
+secuencia tecnica exacta para implementarlo.
+
 ## Comportamientos esperados
 
 - Si el inventario destino no tiene hueco, la transferencia no se realiza.
@@ -81,5 +93,6 @@ dinero si corresponde, y consistencia del estado.
 
 La carpeta `recuperacion_H4` se creo copiando `sesion_H3` como base. El codigo
 de referencia no se ha modificado. El archivo `memoria_H4.tex` ya contiene un
-primer borrador del enunciado de recuperacion extraordinaria; todavia no debe
-tratarse como version definitiva hasta revision de alcance, rubrica y entrega.
+segundo borrador del enunciado de recuperacion extraordinaria, revisado para
+acercarse al estilo de H1, H2 y H3; todavia no debe tratarse como version
+definitiva hasta revision de alcance, rubrica y entrega.
