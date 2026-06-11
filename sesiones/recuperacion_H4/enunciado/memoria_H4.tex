@@ -154,6 +154,11 @@ La entrega debe arrancar correctamente, permitir la navegación por el menú y c
 
 A partir de esa base, el sistema deberá tener en cuenta que los objetos ocupan peso. En los hitos anteriores el peso formaba parte de la información de cada objeto, pero no limitaba las acciones del personaje. En esta versión, cada personaje podrá cargar como máximo \textbf{20 unidades de peso}, de modo que no todos los movimientos de objetos serán válidos.
 
+Para representar esta nueva situación anómala, se deberá incorporar la siguiente excepción propia:
+\begin{itemize}
+    \item \texttt{PesoMaximoSuperadoException}: se producirá cuando se intente añadir o mover un objeto al inventario de un personaje y con ello se supere el peso máximo permitido.
+\end{itemize}
+
 La ampliación se centra en operaciones en las que un objeto sale de un lugar del sistema y pasa a otro. Además de la compra ya incorporada en hitos anteriores, se añadirá la posibilidad de que un personaje entregue un objeto a la tienda a cambio de dinero y de que un objeto pase de un personaje a otro. Estas operaciones deberán integrarse en el menú de forma natural, manteniendo el estilo de interacción usado hasta ahora.
 
 El punto importante de este hito es la consistencia del estado. Si una operación no puede completarse porque falta espacio, porque se supera el peso permitido o porque la posición seleccionada no contiene ningún objeto, el programa deberá tratar la situación como un error del dominio y el sistema deberá quedar como estaba antes de intentar la acción. No debe perderse ni duplicarse ningún objeto, y el dinero de los personajes solo deberá cambiar cuando la operación correspondiente haya terminado correctamente.

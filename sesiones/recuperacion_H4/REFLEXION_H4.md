@@ -61,6 +61,11 @@ el proyecto anterior, pero sin resolverles el diseno. En la ampliacion final se
 debe describir que problema aparece al mover objetos y controlar el peso, no la
 secuencia tecnica exacta para implementarlo.
 
+Excepcion a la regla anterior: cuando el hito introduce una excepcion propia
+nueva, el enunciado debe nombrarla explicitamente, siguiendo el patron del Hito
+3. Para H4 se debe indicar `PesoMaximoSuperadoException` y explicar en una frase
+cuando se produce.
+
 ## Comportamientos esperados
 
 - Si el inventario destino no tiene hueco, la transferencia no se realiza.
