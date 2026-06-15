@@ -31,7 +31,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{FPII 25/26}
-\fancyhead[C]{Hito 4: Recuperación extraordinaria}
+\fancyhead[C]{Hito 4: Proyecto práctico (convocatoria extraordinaria)}
 \fancyhead[R]{UCLM}
 \fancyfoot[C]{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -81,11 +81,8 @@
 
     {\Huge \textbf{Hito 4:}} \\
     \vspace{0.5cm}
-    {\Huge \textbf{Recuperación del proyecto práctico}} \\
-    \vspace{0.5cm}
-    {\Large \textbf{Convocatoria extraordinaria}} \\
-    \vspace{0.4cm}
-    {\large Corrección de H1--H3 y ampliación final}
+    {\Huge \textbf{Proyecto práctico: Convocatoria extraordinaria}} \\
+
 \end{titlepage}
 
 \pagenumbering{arabic}
@@ -104,7 +101,7 @@ Además, se incorporará una ampliación final relacionada con el peso de los ob
 \begin{itemize}
     \item Revisar, corregir e integrar el trabajo realizado en los hitos anteriores.
     \item Mantener la coherencia entre análisis, diseño e implementación en una versión completa del proyecto.
-    \item Ampliar el modelo del videojuego teniendo en cuenta el peso de los objetos.
+    \item Ampliar el sistema desarrollado teniendo en cuenta el peso de los objetos.
     \item Gestionar operaciones que mueven objetos entre distintas partes del sistema sin dejar estados inconsistentes.
     \item Consolidar el proceso de trabajo por fases: análisis, diseño e implementación.
 \end{itemize}
@@ -120,7 +117,6 @@ El ejercicio se entregará en la tarea habilitada en Campus Virtual para la conv
         \item El nombre del ZIP debe seguir el formato \texttt{LX\_XX\_H4\_EXTRA.zip} según el grupo de Campus Virtual.
         \item El ZIP deberá incluir:
         \begin{itemize}
-            \item Memoria final de recuperación, explicando qué se ha corregido de H1--H3 y qué se ha añadido en H4.
             \item Imagen del diagrama de clases y relaciones UML (\texttt{.png} o \texttt{.jpg}).
             \item Únicamente la carpeta \texttt{src} con los archivos \texttt{.java}.
         \end{itemize}
@@ -150,7 +146,7 @@ Se pide seguir las fases del desarrollo de software orientado a objetos:
 
 En esta recuperación se parte del sistema desarrollado en los hitos anteriores. Antes de incorporar la ampliación final, el proyecto deberá revisarse para que mantenga de forma integrada la funcionalidad trabajada durante el curso: lectura de datos desde ficheros, gestión de personajes, inventarios, equipo, tienda, compra de objetos, tratamiento de errores y escritura de información del sistema cuando corresponda.
 
-La entrega debe arrancar correctamente, permitir la navegación por el menú y conservar la coherencia entre los datos leídos, los objetos creados durante la ejecución y la información que se muestra al usuario. Si al recuperar una parte del proyecto se rompe otra funcionalidad previa, se considerará un problema de integración.
+El programa debe arrancar correctamente, permitir la navegación por el menú y conservar la coherencia entre los datos leídos, los objetos creados durante la ejecución y la información que se muestra al usuario. Si al recuperar una parte del proyecto se rompe otra funcionalidad previa, se considerará un problema de integración.
 
 A partir de esa base, el sistema deberá tener en cuenta que los objetos ocupan peso. En los hitos anteriores el peso formaba parte de la información de cada objeto, pero no limitaba las acciones del personaje. En esta versión, cada personaje podrá cargar como máximo \textbf{20 unidades de peso}, de modo que no todos los movimientos de objetos serán válidos.
 
@@ -163,7 +159,7 @@ La ampliación se centra en operaciones en las que un objeto sale de un lugar de
 
 El punto importante de este hito es la consistencia del estado. Si una operación no puede completarse porque falta espacio, porque se supera el peso permitido o porque la posición seleccionada no contiene ningún objeto, el programa deberá tratar la situación como un error del dominio y el sistema deberá quedar como estaba antes de intentar la acción. No debe perderse ni duplicarse ningún objeto, y el dinero de los personajes solo deberá cambiar cuando la operación correspondiente haya terminado correctamente.
 
-El tratamiento de estas nuevas situaciones deberá seguir la línea del Hito 3, incorporando las excepciones propias que sean necesarias y capturándolas en el nivel adecuado del programa. También se deberá actualizar el diagrama UML para reflejar la solución diseñada y explicar en la memoria final qué problemas se han corregido de los hitos anteriores y cómo se ha integrado la ampliación del Hito 4.
+El tratamiento de estas nuevas situaciones deberá seguir la línea del Hito 3, incorporando las excepciones propias que sean necesarias y capturándolas en el nivel adecuado del programa. También se deberá actualizar el diagrama UML para reflejar la solución diseñada y explicar en la memoria final (en caso de que se desee recuperar también esta parte) qué problemas se han corregido de los hitos anteriores y cómo se ha integrado la ampliación del Hito 4.
 
 \subsection{Ficheros de entrada}
 
